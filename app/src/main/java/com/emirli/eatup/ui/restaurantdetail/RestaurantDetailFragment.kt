@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ import com.emirli.eatup.R
 import com.emirli.eatup.databinding.FragmentRestaurantBinding
 import com.emirli.eatup.model.entity.Meal
 import com.emirli.eatup.model.entity.Restaurant
+import com.emirli.eatup.ui.home.HomeFragmentDirections
 import com.emirli.eatup.utils.adapter.CuisineItemAdapter
 import com.emirli.eatup.utils.adapter.MealItemAdapter
 import com.emirli.eatup.utils.listener.IMealOnClick
@@ -50,11 +52,20 @@ class RestaurantDetailFragment : Fragment(){
         mealAdapter.addListener(object : IMealOnClick{
             override fun onClick(meal: Meal) {
                 Log.v("Meal Click", meal.toString())
+                val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToMealDetailFragment(meal)
+                findNavController().navigate(action)
             }
-            override fun onFilter(meal: Meal) {
+            override fun onClickBasket(meal: Meal) {
                 Log.v("Meal Filter", meal.toString())
             }
         })
+        _binding.previousButton.setOnClickListener{
+            findNavController().popBackStack()
+        }
+        _binding.favoriteButton.setOnClickListener {
+            Log.v("Restaurant Fav", restaurant.toString())
+        }
+
     }
 
     private fun initView() {
@@ -81,6 +92,7 @@ class RestaurantDetailFragment : Fragment(){
         _binding.voteLayout.imageView.setBackgroundResource(R.mipmap.ic_vote)
 
         _binding.descriptionTextView.text = restaurant.detail
+
         mealAdapter.setData(restaurant.meals)
         _binding.mealRecyclerView.adapter = mealAdapter
     }

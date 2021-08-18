@@ -46,8 +46,8 @@ val restaurantJson = """
             }
             
         ],
-        "deliveryTime" : "20 - 30 dk",
-        "minPrice" : "30TL"
+        "deliveryTime" : "20 - 30 min",
+        "minPrice" : "30"
     },
     
     
@@ -72,8 +72,8 @@ val restaurantJson = """
             }
             
         ],
-        "deliveryTime" : "20 - 30 dk",
-        "minPrice" : "100TL"
+        "deliveryTime" : "20 min",
+        "minPrice" : "100"
     }
     
 ]
