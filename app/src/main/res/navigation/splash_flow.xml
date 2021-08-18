@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/splash_flow"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/onboardingBaseFragment"
+        android:name="com.emirli.eatup.ui.onboarding.OnboardingBaseFragment"
+        android:label="OnboardingBaseFragment" >
+        <action
+            android:id="@+id/action_onboardingBaseFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.emirli.eatup.ui.login.LoginFragment"
+        android:label="LoginFragment" />
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.emirli.eatup.ui.splash.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_onboardingBaseFragment"
+            app:destination="@id/onboardingBaseFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+</navigation>

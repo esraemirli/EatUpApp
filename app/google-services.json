@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "957325303821",
+    "project_id": "eatupapp-4940f",
+    "storage_bucket": "eatupapp-4940f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957325303821:android:1bad1c27f3fb5c66677544",
+        "android_client_info": {
+          "package_name": "com.emirli.eatup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "957325303821-qtdjdrs74m0mrjk5tfu41llh2hvmv4ge.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyIxS2VV5QaFhg2_mwFepbN0F9oQiq0f4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "957325303821-qtdjdrs74m0mrjk5tfu41llh2hvmv4ge.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
