@@ -20,15 +20,16 @@ class RestaurantItemAdapter : RecyclerView.Adapter<RestaurantItemAdapter.ViewHol
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val nameTextView: AppCompatTextView = view.findViewById(R.id.nameTextView)
         private val imageView: AppCompatImageView = view.findViewById(R.id.iconImageButton)
-        private val containerLinearLayout: LinearLayout = view.findViewById(R.id.containerLinearLayout)
+        private val containerLinearLayout: LinearLayout =
+            view.findViewById(R.id.containerLinearLayout)
 
         fun bind(restaurant: Restaurant, listener: IRestaurantOnClick?) {
             nameTextView.text = restaurant.name
 
-            val options = RequestOptions().placeholder(R.mipmap.ic_launcher)    //TODO no data..
+            val options = RequestOptions().placeholder(R.drawable.no_data_yellow)
             Glide.with(imageView.context)
                 .applyDefaultRequestOptions(options)
-                .load(restaurant.image).into(imageView)
+                .load(restaurant.imageUrl).into(imageView)
 
             containerLinearLayout.setOnClickListener {
                 listener?.onClick(restaurant)

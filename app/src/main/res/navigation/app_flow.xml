@@ -7,5 +7,31 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.emirli.eatup.ui.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_restaurantDetailFragment"
+            app:destination="@id/restaurantDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_restaurantListingFragment"
+            app:destination="@id/restaurantListingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/restaurantDetailFragment"
+        android:name="com.emirli.eatup.ui.restaurantdetail.RestaurantDetailFragment"
+        android:label="RestaurantDetailFragment" >
+        <argument
+            android:name="restaurant"
+            app:argType="com.emirli.eatup.model.entity.Restaurant" />
+    </fragment>
+    <fragment
+        android:id="@+id/restaurantListingFragment"
+        android:name="com.emirli.eatup.ui.restaurantlisting.RestaurantListingFragment"
+        android:label="RestaurantListingFragment" >
+        <action
+            android:id="@+id/action_restaurantListingFragment_to_restaurantDetailFragment"
+            app:destination="@id/restaurantDetailFragment" />
+        <argument
+            android:name="mealId"
+            app:argType="long" />
+    </fragment>
 </navigation>

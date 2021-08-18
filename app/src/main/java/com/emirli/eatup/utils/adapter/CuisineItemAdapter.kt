@@ -14,7 +14,7 @@ import com.emirli.eatup.model.entity.Cuisine
 import com.emirli.eatup.utils.listener.ICuisineOnClick
 
 class CuisineItemAdapter : RecyclerView.Adapter<CuisineItemAdapter.ViewHolder>() {
-    private lateinit var cusineList: List<Cuisine>
+    private lateinit var cuisineList: List<Cuisine>
     private var listener: ICuisineOnClick? = null
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -25,7 +25,7 @@ class CuisineItemAdapter : RecyclerView.Adapter<CuisineItemAdapter.ViewHolder>()
         fun bind(cuisine: Cuisine, listener: ICuisineOnClick?) {
             nameTextView.text = cuisine.name
 
-            val options = RequestOptions().placeholder(R.mipmap.ic_launcher)    //TODO no data..
+            val options = RequestOptions().placeholder(R.drawable.no_data_white)
             Glide.with(imageView.context)
                 .applyDefaultRequestOptions(options)
                 .load(cuisine.imageUrl).into(imageView)
@@ -47,15 +47,15 @@ class CuisineItemAdapter : RecyclerView.Adapter<CuisineItemAdapter.ViewHolder>()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = cusineList[position]
+        val item = cuisineList[position]
         holder.bind(item, listener)
     }
 
-    override fun getItemCount(): Int = cusineList.size
+    override fun getItemCount(): Int = cuisineList.size
 
     fun setData(cusineList: List<Cuisine>?) {
         cusineList?.let {
-            this.cusineList = cusineList
+            this.cuisineList = cusineList
             notifyDataSetChanged()
         }
     }

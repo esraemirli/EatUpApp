@@ -6,4 +6,8 @@
     <string name="onboarding_food_text">Pick up delivery at your door and enjoy groceries</string>
     <string name="home_page_title">Fast and
         \nDelicious Food</string>
+    <string name="restaurant_description">Description</string>
+    <string name="home_restaurants_title">Restaurants</string>
+    <string name="home_cuisine_title"><![CDATA[Cuisine & Categories]]></string>
+    <string name="restaurant_meals_title">Meals</string>
 </resources>
