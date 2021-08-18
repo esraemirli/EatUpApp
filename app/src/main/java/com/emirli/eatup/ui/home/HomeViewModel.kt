@@ -15,7 +15,7 @@ class HomeViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     apiRepository: ApiRepository
 ) : ViewModel() {
-
+    val imageUrl = "https://media-exp1.licdn.com/dms/image/C4E03AQG4H-nPW8DH2g/profile-displayphoto-shrink_200_200/0/1610705085494?e=1633564800&v=beta&t=jm_ZsJUFN8DkZIMK3t07JR7aZn8D9og-Z8HpWd6ROmY"
     val restaurantList: MutableLiveData<List<Restaurant>> = MutableLiveData()
     val cuisineList: MutableLiveData<List<Cuisine>> = MutableLiveData()
 

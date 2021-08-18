@@ -12,6 +12,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import android.view.LayoutInflater
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.emirli.eatup.R
 import com.emirli.eatup.model.entity.Restaurant
 import com.emirli.eatup.utils.adapter.CuisineItemAdapter
 import com.emirli.eatup.utils.adapter.RestaurantItemAdapter
@@ -43,6 +46,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun initView() {
+        val options = RequestOptions().placeholder(R.drawable.ic_profile)
+        Glide.with(_binding.profileImageButton.context)
+            .applyDefaultRequestOptions(options)
+            .load(viewModel.imageUrl).into(_binding.profileImageButton)
+
         _binding.restaurantRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         _binding.cuisineRecyclerView.layoutManager =
@@ -83,9 +91,6 @@ class HomeFragment : Fragment() {
                 Log.v("Click Cuisine" , cuisine.toString())
             }
         })
-        _binding.filterImageButton.setOnClickListener {
-            Log.v("Filter Click", "Open what?")
-        }
     }
 
 
