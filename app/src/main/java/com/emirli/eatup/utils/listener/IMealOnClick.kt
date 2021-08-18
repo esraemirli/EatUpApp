@@ -4,6 +4,5 @@ import com.emirli.eatup.model.entity.Meal
 
 interface IMealOnClick {
     fun onClick(meal: Meal)
-    fun onFilter(meal: Meal)
-
+    fun onClickBasket(meal: Meal)
 }

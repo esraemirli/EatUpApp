@@ -39,7 +39,7 @@ class MealItemAdapter : RecyclerView.Adapter<MealItemAdapter.ViewHolder>() {
                 listener?.onClick(meal)
             }
             filterImageButton.setOnClickListener {
-                listener?.onFilter(meal)
+                listener?.onClickBasket(meal)
             }
         }
     }

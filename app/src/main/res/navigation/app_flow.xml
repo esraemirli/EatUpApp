@@ -22,6 +22,9 @@
         <argument
             android:name="restaurant"
             app:argType="com.emirli.eatup.model.entity.Restaurant" />
+        <action
+            android:id="@+id/action_restaurantDetailFragment_to_mealDetailFragment"
+            app:destination="@id/mealDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/restaurantListingFragment"
@@ -31,7 +34,24 @@
             android:id="@+id/action_restaurantListingFragment_to_restaurantDetailFragment"
             app:destination="@id/restaurantDetailFragment" />
         <argument
-            android:name="mealId"
-            app:argType="long" />
+            android:name="cuisine"
+            app:argType="com.emirli.eatup.model.entity.Cuisine" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.emirli.eatup.ui.favorite.FavoriteFragment"
+        android:label="FavoriteFragment" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_restaurantListingFragment"
+            app:destination="@id/restaurantListingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealDetailFragment"
+        android:name="com.emirli.eatup.ui.mealdetail.MealDetailFragment"
+        android:label="MealDetailFragment" >
+        <argument
+            android:name="meal"
+            app:argType="com.emirli.eatup.model.entity.Meal" />
     </fragment>
 </navigation>

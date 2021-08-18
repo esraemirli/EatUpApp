@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="10dp">
+
+    <LinearLayout
+        android:id="@+id/containerLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:padding="8dp"
+            app:cardCornerRadius="35dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconImageView"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/no_data_yellow" />
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/nameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/patrick_hand"
+                tools:text="Restaurant Name"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="22sp" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginVertical="4dp"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/minPriceTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="6dp"
+                    tools:text="30-40 min"
+                    android:drawableStart="@drawable/ic_credit_card"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/deliveryTimeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    tools:text="30-40 min"
+                    android:drawableStart="@drawable/ic_delivery_time"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="3dp"
+            android:backgroundTint="@color/black"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="8dp"
+            android:background="?android:attr/listDivider" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/voteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/patrick_hand"
+            tools:text="9,2"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="8dp"
+            android:textColor="@color/app_red"
+            android:textStyle="bold"
+            android:textSize="32sp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

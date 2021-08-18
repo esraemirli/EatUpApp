@@ -6,9 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.emirli.eatup.model.ApiRepository
 import com.emirli.eatup.model.entity.Cuisine
 import com.emirli.eatup.model.entity.Restaurant
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -28,6 +26,7 @@ class HomeViewModel @Inject constructor(
         "name": "BK",
         "detail" : "BK burgegr satar",
         "phone" :"5455",
+        "cuisine" : "FastFood",
         "imageUrl" : "http://c1",
         "meals" :
         [
@@ -60,6 +59,7 @@ class HomeViewModel @Inject constructor(
         "name": "Bursa Kebab",
         "detail" : "Bursaaar",
         "phone" :"5455",
+        "cuisine" : "Turkish",
         "imageUrl" : "http://c1",
         "meals" :
         [

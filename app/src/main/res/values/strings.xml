@@ -10,4 +10,5 @@
     <string name="home_restaurants_title">Restaurants</string>
     <string name="home_cuisine_title"><![CDATA[Cuisine & Categories]]></string>
     <string name="restaurant_meals_title">Meals</string>
+    <string name="favorite_page_title">My Favorite Restaurants</string>
 </resources>

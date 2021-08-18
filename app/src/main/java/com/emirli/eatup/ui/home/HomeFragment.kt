@@ -12,7 +12,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import android.view.LayoutInflater
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.emirli.eatup.R
 import com.emirli.eatup.model.entity.Restaurant
 import com.emirli.eatup.utils.adapter.CuisineItemAdapter
 import com.emirli.eatup.utils.adapter.RestaurantItemAdapter
@@ -57,7 +56,6 @@ class HomeFragment : Fragment() {
         viewModel.cuisineList.observe(viewLifecycleOwner, { cuisineList ->
             setCuisineList(cuisineList)
         })
-
     }
 
     private fun setCuisineList(cuisineList: List<Cuisine>) {
@@ -80,11 +78,14 @@ class HomeFragment : Fragment() {
         })
         cuisineAdapter.addListener( object : ICuisineOnClick{
             override fun onClick(cuisine: Cuisine) {
-                val action = HomeFragmentDirections.actionHomeFragmentToRestaurantListingFragment(cuisine.id)
+                val action = HomeFragmentDirections.actionHomeFragmentToRestaurantListingFragment(cuisine)
                 findNavController().navigate(action)
                 Log.v("Click Cuisine" , cuisine.toString())
             }
         })
+        _binding.filterImageButton.setOnClickListener {
+            Log.v("Filter Click", "Open what?")
+        }
     }
 
 

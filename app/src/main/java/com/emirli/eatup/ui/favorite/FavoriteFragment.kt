@@ -1,4 +1,4 @@
-package com.emirli.eatup.ui.restaurantlisting
+package com.emirli.eatup.ui.favorite
 
 import android.os.Bundle
 import android.util.Log
@@ -6,23 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.emirli.eatup.R
 import com.emirli.eatup.databinding.FragmentRestaurantListingBinding
 import com.emirli.eatup.model.entity.Restaurant
-import com.emirli.eatup.utils.adapter.RestaurantListingItemAdapter
+import com.emirli.eatup.ui.restaurantlisting.RestaurantListingFragmentDirections
+import com.emirli.eatup.utils.adapter.FavoriteRestaurantAdapter
 import com.emirli.eatup.utils.listener.IRestaurantOnClick
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.fragment.app.viewModels
 
 @AndroidEntryPoint
-class RestaurantListingFragment : Fragment(){
+class FavoriteFragment : Fragment(){
     private lateinit var _binding: FragmentRestaurantListingBinding
-    private val viewModel: RestaurantListingViewModel by viewModels()
-    private val args: RestaurantListingFragmentArgs by navArgs()
+    private val viewModel: FavoriteViewModel by viewModels()
 
-    private var restaurantAdapter = RestaurantListingItemAdapter()
+    private var restaurantAdapter = FavoriteRestaurantAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,11 +41,11 @@ class RestaurantListingFragment : Fragment(){
     }
 
     private fun initView() {
-        Log.v("Fragment" , "RestaurantListing")
+        Log.v("Fragment" , "FavoriteFragment")
         _binding.restaurantRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        _binding.pageTitleTextView.text = "${args.cuisine.name} Restaurants"
-        //TODO getRestaurantByCuisine(args.meal.id)
+        _binding.pageTitleTextView.text = getString(R.string.favorite_page_title)
+        //TODO getFavoriteRestaurant()
     }
 
     private fun addListener() {
