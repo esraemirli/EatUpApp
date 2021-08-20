@@ -6,14 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.emirli.eatup.MainActivity
+import androidx.fragment.app.viewModels
+import com.emirli.eatup.ui.MainActivity
 import com.emirli.eatup.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(){
     private lateinit var _binding : FragmentLoginBinding
-//    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,7 +27,15 @@ class LoginFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
         addListener()
+    }
+
+    private fun initView() {
+        println("İNİT")
+        viewModel.login().observe(viewLifecycleOwner, {
+            println("ESRA $it\n${it.data?.token}")
+        })
     }
 
     private fun addListener() {

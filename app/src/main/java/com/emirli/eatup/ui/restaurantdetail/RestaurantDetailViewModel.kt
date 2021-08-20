@@ -3,16 +3,11 @@ package com.emirli.eatup.ui.restaurantdetail
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.emirli.eatup.model.ApiRepository
 import com.emirli.eatup.model.entity.Restaurant
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import javax.inject.Inject
 
-class RestaurantViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle,
-    apiRepository: ApiRepository
-) : ViewModel() {
+class RestaurantViewModel : ViewModel() {
     private val restaurantList: MutableLiveData<List<Restaurant>> = MutableLiveData()
 
     init {

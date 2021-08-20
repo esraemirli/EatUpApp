@@ -11,4 +11,5 @@ class LocalDataSource @Inject constructor(private val sharedPrefManager: SharedP
     fun getToken(): String? {
         return sharedPrefManager.getToken()
     }
+
 }

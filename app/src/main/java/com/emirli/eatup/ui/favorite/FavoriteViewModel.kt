@@ -1,19 +1,11 @@
 package com.emirli.eatup.ui.favorite
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.emirli.eatup.model.ApiRepository
 import com.emirli.eatup.model.entity.Restaurant
 import com.google.gson.GsonBuilder
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 
-@HiltViewModel
-class FavoriteViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle,
-    apiRepository: ApiRepository
-) : ViewModel() {
+class FavoriteViewModel : ViewModel() {
 
     val restaurantList: MutableLiveData<List<Restaurant>> = MutableLiveData()
 

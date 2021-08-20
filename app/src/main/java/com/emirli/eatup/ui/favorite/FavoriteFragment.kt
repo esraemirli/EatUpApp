@@ -10,14 +10,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.emirli.eatup.R
 import com.emirli.eatup.databinding.FragmentRestaurantListingBinding
-import com.emirli.eatup.model.entity.Restaurant
 import com.emirli.eatup.ui.restaurantlisting.RestaurantListingFragmentDirections
 import com.emirli.eatup.utils.adapter.FavoriteRestaurantAdapter
 import com.emirli.eatup.utils.listener.IRestaurantOnClick
-import dagger.hilt.android.AndroidEntryPoint
 import androidx.fragment.app.viewModels
+import com.emirli.eatup.model.entity.Restaurant
 
-@AndroidEntryPoint
 class FavoriteFragment : Fragment(){
     private lateinit var _binding: FragmentRestaurantListingBinding
     private val viewModel: FavoriteViewModel by viewModels()
@@ -54,9 +52,9 @@ class FavoriteFragment : Fragment(){
         }
         restaurantAdapter.addListener(object : IRestaurantOnClick {
             override fun onClick(restaurant: Restaurant) {
-                val action = RestaurantListingFragmentDirections.actionRestaurantListingFragmentToRestaurantDetailFragment(restaurant)
-                findNavController().navigate(action)
-                Log.v("Click Restaurant" , restaurant.toString())
+//                val action = RestaurantListingFragmentDirections.actionRestaurantListingFragmentToRestaurantDetailFragment(restaurant)
+//                findNavController().navigate(action)
+//                Log.v("Click Restaurant" , restaurant.toString())
             }
         })
     }

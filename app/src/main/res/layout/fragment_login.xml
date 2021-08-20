@@ -5,6 +5,8 @@
 
     <Button
         android:id="@+id/loginButton"
+        android:text="Tıkla GEÇ"
+        android:textSize="35sp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

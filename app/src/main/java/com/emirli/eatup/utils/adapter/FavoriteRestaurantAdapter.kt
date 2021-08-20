@@ -27,8 +27,8 @@ class FavoriteRestaurantAdapter : RecyclerView.Adapter<FavoriteRestaurantAdapter
 
         fun bind(restaurant: Restaurant, listener: IRestaurantOnClick?) {
             nameTextView.text = restaurant.name
-            voteTextView.text = restaurant.vote
-            cuisineTextView.text = "${restaurant.cuisine} Cuisine"
+            voteTextView.text = restaurant.vote.toString()
+            cuisineTextView.text = "${restaurant.cuisines[0]}"
 
             val options = RequestOptions().placeholder(R.drawable.no_data_yellow)
             Glide.with(imageView.context)

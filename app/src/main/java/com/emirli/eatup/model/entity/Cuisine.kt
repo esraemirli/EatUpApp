@@ -1,9 +1,11 @@
 package com.emirli.eatup.model.entity
+import com.google.gson.annotations.SerializedName
 
-import java.io.Serializable
-
-data class Cuisine (
-    val id : Long,
-    val imageUrl : String,
-    val name : String,
-) : Serializable
+data class Cuisine(
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("imageUrl")
+    val imageUrl: String,
+    @SerializedName("name")
+    val name: String
+)

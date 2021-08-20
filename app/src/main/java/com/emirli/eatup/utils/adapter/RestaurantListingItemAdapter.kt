@@ -29,8 +29,8 @@ class RestaurantListingItemAdapter : RecyclerView.Adapter<RestaurantListingItemA
         fun bind(restaurant: Restaurant, listener: IRestaurantOnClick?) {
             nameTextView.text = restaurant.name
             deliveryTimeTextView.text = restaurant.deliveryTime
-            minPriceTextView.text = "$${restaurant.minPrice}"
-            voteTextView.text = restaurant.vote
+            minPriceTextView.text = "$${restaurant.minimumPrice}"
+            voteTextView.text = restaurant.vote.toString()
 
             val options = RequestOptions().placeholder(R.drawable.no_data_yellow)
             Glide.with(imageView.context)

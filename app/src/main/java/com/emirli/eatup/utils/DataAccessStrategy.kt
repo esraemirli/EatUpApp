@@ -2,8 +2,8 @@ package com.emirli.eatup.utils
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import com.emirli.eatup.model.entity.login.LoginResponse
 import kotlinx.coroutines.Dispatchers
-
 
 fun <T> performNetworkOperation(call: suspend () -> Resource<T>): LiveData<Resource<T>> {
     return liveData(Dispatchers.IO) {
@@ -32,9 +32,9 @@ fun <T> performAuthTokenNetworkOperation(
         if (networkCall.status == Resource.Status.SUCCESS) {
             val data = networkCall.data!!
 
-//            if (data is LoginResponse) {
-//                saveToken(data.token)
-//            }
+            if (data is LoginResponse) {
+                saveToken(data.token)
+            }
 //            if (data is RegisterResponse) {
 //                saveToken(data.token)
 //            }

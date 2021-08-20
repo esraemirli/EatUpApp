@@ -18,7 +18,7 @@ import com.emirli.eatup.model.entity.Meal
 class MealDetailFragment : Fragment() {
     private lateinit var _binding: FragmentMeailDetailBinding
     private val viewModel: MealDetailViewModel by viewModels()
-    private val args: MealDetailFragmentArgs by navArgs()
+//    private val args: MealDetailFragmentArgs by navArgs()
     private lateinit var meal : Meal
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +38,7 @@ class MealDetailFragment : Fragment() {
 
     private fun initView() {
         Log.v("Fragment", "MealDetailFragment")
-        meal = args.meal
+//        meal = args.meal
         setFields()
     }
 

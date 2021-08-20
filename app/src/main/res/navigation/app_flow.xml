@@ -19,9 +19,6 @@
         android:id="@+id/restaurantDetailFragment"
         android:name="com.emirli.eatup.ui.restaurantdetail.RestaurantDetailFragment"
         android:label="RestaurantDetailFragment" >
-        <argument
-            android:name="restaurant"
-            app:argType="com.emirli.eatup.model.entity.Restaurant" />
         <action
             android:id="@+id/action_restaurantDetailFragment_to_mealDetailFragment"
             app:destination="@id/mealDetailFragment" />
@@ -33,9 +30,6 @@
         <action
             android:id="@+id/action_restaurantListingFragment_to_restaurantDetailFragment"
             app:destination="@id/restaurantDetailFragment" />
-        <argument
-            android:name="cuisine"
-            app:argType="com.emirli.eatup.model.entity.Cuisine" />
     </fragment>
 
     <fragment
@@ -50,8 +44,5 @@
         android:id="@+id/mealDetailFragment"
         android:name="com.emirli.eatup.ui.mealdetail.MealDetailFragment"
         android:label="MealDetailFragment" >
-        <argument
-            android:name="meal"
-            app:argType="com.emirli.eatup.model.entity.Meal" />
     </fragment>
 </navigation>

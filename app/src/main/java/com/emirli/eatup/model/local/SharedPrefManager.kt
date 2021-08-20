@@ -3,9 +3,9 @@ package com.emirli.eatup.model.local
 import android.content.Context
 import android.content.SharedPreferences
 
-class SharedPrefManager(context : Context) {
+class SharedPrefManager(context: Context) {
     companion object {
-        const val TOKEN = "com.emirli.eatup.TOKEN"
+        const val TOKEN = "com.emirli.eatup.model.TOKEN"
     }
 
     private val sharedPreferences: SharedPreferences =
