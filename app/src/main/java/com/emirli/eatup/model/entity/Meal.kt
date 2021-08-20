@@ -1,14 +1,25 @@
 package com.emirli.eatup.model.entity
 
-import java.io.Serializable
+
+import com.google.gson.annotations.SerializedName
 
 data class Meal(
-    val id : Long,
-    val name : String,
-    val imageUrl : String,
-    val price : Double,
-    val calorie : Double,
-    val vote : Double,
-    val quantity : Double,
-    val ingredients : List<String>?
-) : Serializable
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("calorie")
+    val calorie: Double,
+    @SerializedName("cuisines")
+    val cuisines: List<String>,
+    @SerializedName("imageUrl")
+    val imageUrl: String,
+    @SerializedName("ingredients")
+    val ingredients: List<String>,
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("price")
+    val price: Double,
+    @SerializedName("quantity")
+    val quantity: Double,
+    @SerializedName("vote")
+    val vote: Double
+)
