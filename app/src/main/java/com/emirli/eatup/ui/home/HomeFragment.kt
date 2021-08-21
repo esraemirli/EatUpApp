@@ -102,6 +102,9 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(action)
             }
         })
+        _binding.profileImageButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+        }
     }
 
     private fun setCuisineList(cuisineList: List<Cuisine>?) {

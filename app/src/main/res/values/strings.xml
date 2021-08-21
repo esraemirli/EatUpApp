@@ -16,4 +16,15 @@
     <string name="meal_default_num">1</string>
     <string name="total_price_title">Total Price</string>
     <string name="last_orders_title">Last Orders</string>
+    <string name="profile_title">My Profile</string>
+    <string name="phone_number_title">Phone Number</string>
+    <string name="name_title">Name Surname</string>
+    <string name="address_title">Address</string>
+    <string name="hint_phone_number">Give your phone number</string>
+    <string name="profile_save">Save</string>
+    <string name="hint_phone">Enter your phone numbber</string>
+    <string name="hint_name">Enter your name and surname</string>
+    <string name="hint_address">Enter your address</string>
+    <string name="hint_password">* * * * * *</string>
+    <string name="password_title">Password</string>
 </resources>

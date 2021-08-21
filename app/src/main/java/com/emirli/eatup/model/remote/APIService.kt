@@ -1,6 +1,7 @@
 package com.emirli.eatup.model.remote
 
 import com.emirli.eatup.model.DataResponse
+import com.emirli.eatup.model.entity.User
 import com.emirli.eatup.model.entity.cuisine.CuisineListResponse
 import com.emirli.eatup.model.entity.login.LoginRequest
 import com.emirli.eatup.model.entity.login.LoginResponse
@@ -35,6 +36,9 @@ interface APIService {
 
     @GET("cart/sold-meals")
     suspend fun getLastOrders(): Response<LastOrderResponse>
+
+    @GET("users/get-user")
+    suspend fun getUserDetail(): Response<User>
 
     @GET("restaurant/{restaurantId}")
     suspend fun getRestaurantById(@Path("restaurantId") restaurantId: Int): Response<RestaurantResponse>

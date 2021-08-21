@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_homeFragment_to_restaurantListingFragment"
             app:destination="@id/restaurantListingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/restaurantDetailFragment"
@@ -66,4 +69,8 @@
         android:id="@+id/lastOrderFragment"
         android:name="com.emirli.eatup.ui.lastorder.LastOrderFragment"
         android:label="LastOrderFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.emirli.eatup.ui.profile.ProfileFragment"
+        android:label="ProfileFragment" />
 </navigation>

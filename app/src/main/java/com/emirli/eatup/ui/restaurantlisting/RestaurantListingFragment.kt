@@ -75,7 +75,9 @@ class RestaurantListingFragment : Fragment(){
     }
 
     private fun setRestaurant(restaurantList: List<Restaurant>?) {
-        isRestaurantListVisible(true)
+        val isVisible = !restaurantList.isNullOrEmpty()
+        isRestaurantListVisible(isVisible)
+        
         restaurantAdapter.setData(restaurantList)
         _binding.restaurantRecyclerView.adapter = restaurantAdapter
     }
