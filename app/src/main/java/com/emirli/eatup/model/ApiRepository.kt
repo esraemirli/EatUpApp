@@ -36,6 +36,9 @@ class ApiRepository @Inject constructor(
     fun getRestaurantList() = performNetworkOperation {
         remoteDataSource.getRestaurantList()
     }
+    fun getFavoriteRestaurantList() = performNetworkOperation {
+        remoteDataSource.getFavoriteRestaurantList()
+    }
 
     fun getRestaurantById(restaurantId : Int) = performNetworkOperation {
         remoteDataSource.getRestaurantById(restaurantId)

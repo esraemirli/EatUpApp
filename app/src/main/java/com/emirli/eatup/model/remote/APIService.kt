@@ -21,6 +21,9 @@ interface APIService {
     @GET( "restaurant")
     suspend fun getRestaurantList() : Response<RestaurantResponse>
 
+    @GET( "restaurant/favourite")   //TODO typo
+    suspend fun getFavoriteRestaurantList() : Response<RestaurantResponse>
+
     @GET( "restaurant/{restaurantId}")
     suspend fun getRestaurantById(@Path("restaurantId") restaurantId: Int) : Response<RestaurantResponse>
 

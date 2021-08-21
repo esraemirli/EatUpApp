@@ -47,8 +47,8 @@
         android:name="com.emirli.eatup.ui.favorite.FavoriteFragment"
         android:label="FavoriteFragment" >
         <action
-            android:id="@+id/action_favoriteFragment_to_restaurantListingFragment"
-            app:destination="@id/restaurantListingFragment" />
+            android:id="@+id/action_favoriteFragment_to_restaurantDetailFragment"
+            app:destination="@id/restaurantDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/mealDetailFragment"
