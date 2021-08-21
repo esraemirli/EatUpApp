@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/app_color">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:background="@color/app_color"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/app_color">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/app_background_card"
             android:orientation="vertical"
             android:padding="16dp">
 
@@ -37,17 +42,16 @@
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    tools:text="Restaurants" />
+                    tools:text="My Basket" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/restaurantRecyclerView"
-                android:visibility="gone"
+                android:id="@+id/basketRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="vertical" />
-
+                android:orientation="vertical"
+                android:visibility="gone" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -56,6 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -75,8 +80,56 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:foregroundGravity="center"
+        android:layout_weight="2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-</FrameLayout>
+        android:layout_gravity="center"
+        android:foregroundGravity="center" />
+
+    <LinearLayout
+        android:id="@+id/orderLinearLayout"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        android:layout_gravity="bottom"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/patrick_hand"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:text="@string/total_price_title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/totalPriceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/patrick_hand"
+                android:textColor="@color/black"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                tools:text="$14,50" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addBasketButton"
+            android:layout_width="200dp"
+            android:layout_weight="1"
+            android:layout_height="70dp"
+            android:backgroundTint="@color/app_red"
+            android:text="Order Now"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:cornerRadius="15dp" />
+    </LinearLayout>
+
+</LinearLayout>

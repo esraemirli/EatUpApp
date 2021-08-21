@@ -21,18 +21,27 @@ class RemoteDataSource @Inject constructor(private val apiService: APIService) :
         apiService.getRestaurantList()
     }
 
+    suspend fun getBasketItemList() = getResult {
+        apiService.getBasketItemList()
+    }
+
+    suspend fun buyBasket() = getResult {
+        apiService.buyBasket()
+    }
+
     suspend fun getFavoriteRestaurantList() = getResult {
         apiService.getFavoriteRestaurantList()
     }
 
-    suspend fun getRestaurantById(restaurantId : Int) = getResult {
+    suspend fun getRestaurantById(restaurantId: Int) = getResult {
         apiService.getRestaurantById(restaurantId)
     }
 
-    suspend fun addFavoriteRestaurant(restaurantId : Int) = getResult {
+    suspend fun addFavoriteRestaurant(restaurantId: Int) = getResult {
         apiService.addFavoriteRestaurant(restaurantId)
     }
-    suspend fun removeFavoriteRestaurant(restaurantId : Int) = getResult {
+
+    suspend fun removeFavoriteRestaurant(restaurantId: Int) = getResult {
         apiService.removeFavoriteRestaurant(restaurantId)
     }
 
@@ -40,15 +49,19 @@ class RemoteDataSource @Inject constructor(private val apiService: APIService) :
         apiService.getCuisineList()
     }
 
-    suspend fun getRestaurantsByCuisine(cuisineId : Int) = getResult {
+    suspend fun getRestaurantsByCuisine(cuisineId: Int) = getResult {
         apiService.getRestaurantsByCuisine(cuisineId)
     }
 
-    suspend fun getMealById(mealId : Int) = getResult {
+    suspend fun getMealById(mealId: Int) = getResult {
         apiService.getMealById(mealId)
     }
 
-    suspend fun addBasket(request : BasketRequest) = getResult {
+    suspend fun removeItemFromBasket(mealId: Int) = getResult {
+        apiService.removeItemFromBasket(mealId)
+    }
+
+    suspend fun addBasket(request: BasketRequest) = getResult {
         apiService.addBasket(request)
     }
 }

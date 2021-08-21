@@ -79,7 +79,7 @@ class MealDetailFragment : Fragment() {
         _binding.quantityLayout.imageView.setBackgroundResource(R.mipmap.ic_quantity)
 
         _binding.descriptionTextView.text = meal.ingredients.joinToString(separator = ",") { it }
-        _binding.priceTextView.text = "$${meal.calorie}"
+        _binding.priceTextView.text = "$${meal.price}"
     }
 
     private fun addListener() {

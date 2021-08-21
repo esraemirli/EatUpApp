@@ -19,7 +19,7 @@ class ApiRepository @Inject constructor(
             remoteDataSource.login(request)
         },
         saveToken = {
-           localDataSource.saveToken(it)
+            localDataSource.saveToken(it)
         }
     )
 
@@ -36,22 +36,32 @@ class ApiRepository @Inject constructor(
     fun getRestaurantList() = performNetworkOperation {
         remoteDataSource.getRestaurantList()
     }
+
+    fun getBasketItemList() = performNetworkOperation {
+        remoteDataSource.getBasketItemList()
+    }
+
+    fun buyBasket() = performNetworkOperation {
+        remoteDataSource.buyBasket()
+    }
+
     fun getFavoriteRestaurantList() = performNetworkOperation {
         remoteDataSource.getFavoriteRestaurantList()
     }
 
-    fun getRestaurantById(restaurantId : Int) = performNetworkOperation {
+    fun getRestaurantById(restaurantId: Int) = performNetworkOperation {
         remoteDataSource.getRestaurantById(restaurantId)
     }
 
-    fun addFavoriteRestaurant(restaurantId : Int) = performNetworkOperation {
+    fun addFavoriteRestaurant(restaurantId: Int) = performNetworkOperation {
         remoteDataSource.addFavoriteRestaurant(restaurantId)
     }
-    fun removeFavoriteRestaurant(restaurantId : Int) = performNetworkOperation {
+
+    fun removeFavoriteRestaurant(restaurantId: Int) = performNetworkOperation {
         remoteDataSource.removeFavoriteRestaurant(restaurantId)
     }
 
-    fun getRestaurantsByCuisine(cuisineId : Int) = performNetworkOperation {
+    fun getRestaurantsByCuisine(cuisineId: Int) = performNetworkOperation {
         remoteDataSource.getRestaurantsByCuisine(cuisineId)
     }
 
@@ -61,11 +71,15 @@ class ApiRepository @Inject constructor(
     }
 
     //Meal
-    fun getMealById(mealId : Int) = performNetworkOperation {
+    fun getMealById(mealId: Int) = performNetworkOperation {
         remoteDataSource.getMealById(mealId)
     }
 
-    fun addBasket(request : BasketRequest) = performNetworkOperation {
+    fun removeItemFromBasket(mealId: Int) = performNetworkOperation {
+        remoteDataSource.removeItemFromBasket(mealId)
+    }
+
+    fun addBasket(request: BasketRequest) = performNetworkOperation {
         remoteDataSource.addBasket(request)
     }
 

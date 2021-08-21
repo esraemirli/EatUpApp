@@ -28,7 +28,7 @@
                 android:id="@+id/iconImageButton"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 android:layout_gravity="center"
                 android:background="@null"
                 android:src="@drawable/ic_baseline_filter_list_24" />

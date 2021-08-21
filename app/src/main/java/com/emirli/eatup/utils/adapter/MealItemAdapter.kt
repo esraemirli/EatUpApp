@@ -71,6 +71,7 @@ class MealItemAdapter : RecyclerView.Adapter<MealItemAdapter.ViewHolder>() {
     override fun getItemCount(): Int = mealList.size
 
     fun setData(mealList: List<Meal>?) {
+        basketAnimationVisibility = false
         mealList?.let {
             this.mealList = mealList
             notifyDataSetChanged()

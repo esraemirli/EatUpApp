@@ -14,4 +14,5 @@
     <string name="add_basket_text">Add to Basket</string>
     <string name="response_not_found">Ups!... no results found</string>
     <string name="meal_default_num">1</string>
+    <string name="total_price_title">Total Price</string>
 </resources>

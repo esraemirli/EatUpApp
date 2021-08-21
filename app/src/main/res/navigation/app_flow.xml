@@ -58,4 +58,8 @@
             android:name="mealId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="com.emirli.eatup.ui.basket.BasketFragment"
+        android:label="BasketFragment" />
 </navigation>
