@@ -16,7 +16,7 @@ import com.emirli.eatup.R
 import com.emirli.eatup.databinding.FragmentRestaurantBinding
 import com.emirli.eatup.model.entity.Meal
 import com.emirli.eatup.model.entity.Restaurant
-import com.emirli.eatup.utils.Resource
+import com.emirli.eatup.model.entity.order.BasketRequest
 import com.emirli.eatup.utils.Resource.Status
 import com.emirli.eatup.utils.adapter.MealItemAdapter
 import com.emirli.eatup.utils.gone
@@ -72,9 +72,13 @@ class RestaurantDetailFragment : Fragment() {
     private fun addListener() {
         mealAdapter.addListener(object : IMealOnClick {
             override fun onClick(meal: Meal) {
-                val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToMealDetailFragment(meal.id)
+                val action =
+                    RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToMealDetailFragment(
+                        meal.id
+                    )
                 findNavController().navigate(action)
             }
+
             override fun onClickBasket(meal: Meal) {
                 addBasket(meal)
             }
@@ -99,7 +103,12 @@ class RestaurantDetailFragment : Fragment() {
     }
 
     private fun addBasket(meal: Meal) {
-        //TODO
+        val request = BasketRequest(mealId = meal.id, number = 1)
+        viewModel.addBasket(request).observe(viewLifecycleOwner, { response ->
+            if (response.status == Status.SUCCESS) {
+                mealAdapter.isBasketAnimationVisible(meal, true)
+            }
+        })
     }
 
     private fun setFavoriteButtonVisibility(isFavorite: Boolean?) {

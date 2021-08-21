@@ -40,8 +40,8 @@
             android:id="@+id/detailTextView"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
-            android:maxLines="5"
             android:fontFamily="@font/patrick_hand"
+            android:maxLines="5"
             android:text="Kinoa, kamil, avacado"
             android:textSize="18sp" />
 
@@ -73,12 +73,31 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/filterImageButton"
+                <FrameLayout
+                    android:id="@+id/basketFrameLayout"
                     android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@null"
-                    android:src="@drawable/ic_basket_white" />
+                    android:layout_height="50dp">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/basketAnimation"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:background="@drawable/basket_lottie_background"
+                        android:scaleType="centerInside"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/success_basket"
+                        app:lottie_repeatCount="1" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/basketImageButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/basket_lottie_background"
+                        android:src="@drawable/ic_basket_white" />
+                </FrameLayout>
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

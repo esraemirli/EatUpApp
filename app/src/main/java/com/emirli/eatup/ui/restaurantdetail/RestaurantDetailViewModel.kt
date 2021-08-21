@@ -3,6 +3,7 @@ package com.emirli.eatup.ui.restaurantdetail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.emirli.eatup.model.ApiRepository
+import com.emirli.eatup.model.entity.order.BasketRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -17,5 +18,7 @@ class RestaurantViewModel @Inject constructor(
     fun addFavoriteRestaurant(restaurantId: Int) = apiRepository.addFavoriteRestaurant(restaurantId)
 
     fun removeFavoriteRestaurant(restaurantId: Int) = apiRepository.removeFavoriteRestaurant(restaurantId)
+
+    fun addBasket(request : BasketRequest) = apiRepository.addBasket(request)
 }
 
