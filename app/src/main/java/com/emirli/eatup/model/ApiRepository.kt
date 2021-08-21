@@ -1,9 +1,8 @@
 package com.emirli.eatup.model
 
 import com.emirli.eatup.model.entity.login.LoginRequest
-import com.emirli.eatup.model.entity.order.BasketRequest
+import com.emirli.eatup.model.entity.basket.BasketRequest
 import com.emirli.eatup.model.local.LocalDataSource
-import com.emirli.eatup.model.remote.APIService
 import com.emirli.eatup.model.remote.RemoteDataSource
 import com.emirli.eatup.utils.performAuthTokenNetworkOperation
 import com.emirli.eatup.utils.performNetworkOperation
@@ -47,6 +46,10 @@ class ApiRepository @Inject constructor(
 
     fun getFavoriteRestaurantList() = performNetworkOperation {
         remoteDataSource.getFavoriteRestaurantList()
+    }
+
+    fun getLastOrders() = performNetworkOperation {
+        remoteDataSource.getLastOrders()
     }
 
     fun getRestaurantById(restaurantId: Int) = performNetworkOperation {

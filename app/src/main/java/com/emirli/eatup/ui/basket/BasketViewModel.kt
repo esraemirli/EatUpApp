@@ -1,12 +1,11 @@
 package com.emirli.eatup.ui.basket
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.emirli.eatup.model.ApiRepository
 import com.emirli.eatup.model.DataResponse
-import com.emirli.eatup.model.entity.order.BasketResponse
+import com.emirli.eatup.model.entity.basket.BasketResponse
 import com.emirli.eatup.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

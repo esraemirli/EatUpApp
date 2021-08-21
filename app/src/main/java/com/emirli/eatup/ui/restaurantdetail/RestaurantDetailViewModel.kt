@@ -3,7 +3,7 @@ package com.emirli.eatup.ui.restaurantdetail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.emirli.eatup.model.ApiRepository
-import com.emirli.eatup.model.entity.order.BasketRequest
+import com.emirli.eatup.model.entity.basket.BasketRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

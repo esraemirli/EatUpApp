@@ -1,9 +1,8 @@
 package com.emirli.eatup.model.remote
 
 import com.emirli.eatup.model.entity.login.LoginRequest
-import com.emirli.eatup.model.entity.order.BasketRequest
+import com.emirli.eatup.model.entity.basket.BasketRequest
 import com.emirli.eatup.utils.BaseDataSource
-import com.emirli.eatup.utils.performNetworkOperation
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(private val apiService: APIService) :
@@ -31,6 +30,10 @@ class RemoteDataSource @Inject constructor(private val apiService: APIService) :
 
     suspend fun getFavoriteRestaurantList() = getResult {
         apiService.getFavoriteRestaurantList()
+    }
+
+    suspend fun getLastOrders() = getResult {
+        apiService.getLastOrders()
     }
 
     suspend fun getRestaurantById(restaurantId: Int) = getResult {

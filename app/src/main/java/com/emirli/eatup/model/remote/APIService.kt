@@ -6,8 +6,9 @@ import com.emirli.eatup.model.entity.login.LoginRequest
 import com.emirli.eatup.model.entity.login.LoginResponse
 import com.emirli.eatup.model.entity.login.RegisterResponse
 import com.emirli.eatup.model.entity.meal.MealResponse
-import com.emirli.eatup.model.entity.order.BasketRequest
-import com.emirli.eatup.model.entity.order.BasketResponse
+import com.emirli.eatup.model.entity.basket.BasketRequest
+import com.emirli.eatup.model.entity.basket.BasketResponse
+import com.emirli.eatup.model.entity.lastorder.LastOrderResponse
 import com.emirli.eatup.model.entity.restaurant.RestaurantResponse
 import retrofit2.Response
 import retrofit2.http.*
@@ -31,6 +32,9 @@ interface APIService {
 
     @GET("restaurant/favourite")   //TODO typo
     suspend fun getFavoriteRestaurantList(): Response<RestaurantResponse>
+
+    @GET("cart/sold-meals")
+    suspend fun getLastOrders(): Response<LastOrderResponse>
 
     @GET("restaurant/{restaurantId}")
     suspend fun getRestaurantById(@Path("restaurantId") restaurantId: Int): Response<RestaurantResponse>

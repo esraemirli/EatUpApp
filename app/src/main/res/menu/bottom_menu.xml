@@ -17,7 +17,7 @@
         android:icon="@drawable/ic_basket" />
 
     <item
-        android:id="@+id/orderFragment"
+        android:id="@+id/lastOrderFragment"
         android:title=""
         android:icon="@drawable/ic_last_order" />
 </menu>

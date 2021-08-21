@@ -14,7 +14,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.emirli.eatup.R
 import com.emirli.eatup.databinding.FragmentMeailDetailBinding
 import com.emirli.eatup.model.entity.Meal
-import com.emirli.eatup.model.entity.order.BasketRequest
+import com.emirli.eatup.model.entity.basket.BasketRequest
 import com.emirli.eatup.utils.Resource
 import com.emirli.eatup.utils.gone
 import com.emirli.eatup.utils.show

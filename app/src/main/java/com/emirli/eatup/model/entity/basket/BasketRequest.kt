@@ -1,4 +1,4 @@
-package com.emirli.eatup.model.entity.order
+package com.emirli.eatup.model.entity.basket
 
 data class BasketRequest(
     val mealId : Int,

@@ -15,4 +15,5 @@
     <string name="response_not_found">Ups!... no results found</string>
     <string name="meal_default_num">1</string>
     <string name="total_price_title">Total Price</string>
+    <string name="last_orders_title">Last Orders</string>
 </resources>

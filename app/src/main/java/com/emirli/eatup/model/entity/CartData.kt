@@ -1,4 +1,4 @@
-package com.emirli.eatup.model.entity.order
+package com.emirli.eatup.model.entity
 
 
 import com.google.gson.annotations.SerializedName

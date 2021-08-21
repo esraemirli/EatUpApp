@@ -16,7 +16,7 @@ import com.emirli.eatup.R
 import com.emirli.eatup.databinding.FragmentRestaurantBinding
 import com.emirli.eatup.model.entity.Meal
 import com.emirli.eatup.model.entity.Restaurant
-import com.emirli.eatup.model.entity.order.BasketRequest
+import com.emirli.eatup.model.entity.basket.BasketRequest
 import com.emirli.eatup.utils.Resource.Status
 import com.emirli.eatup.utils.adapter.MealItemAdapter
 import com.emirli.eatup.utils.gone

@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.emirli.eatup.databinding.FragmentBasketBinding
-import com.emirli.eatup.model.entity.order.CartData
+import com.emirli.eatup.model.entity.CartData
 import com.emirli.eatup.utils.Resource
 import com.emirli.eatup.utils.adapter.BasketItemAdapter
 import com.emirli.eatup.utils.gone

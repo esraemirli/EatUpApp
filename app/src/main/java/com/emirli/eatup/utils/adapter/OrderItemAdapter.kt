@@ -3,43 +3,39 @@ package com.emirli.eatup.utils.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageButton
+import android.widget.RatingBar
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.emirli.eatup.R
 import com.emirli.eatup.model.entity.CartData
-import com.emirli.eatup.utils.listener.ICartOnClick
-import kotlinx.coroutines.currentCoroutineContext
+import com.emirli.eatup.utils.listener.IOrderRatingOnClick
 
-class BasketItemAdapter : RecyclerView.Adapter<BasketItemAdapter.ViewHolder>(){
+class OrderItemAdapter : RecyclerView.Adapter<OrderItemAdapter.ViewHolder>(){
     private lateinit var cartList: MutableList<CartData>
-    private var listener: ICartOnClick? = null
+    private var listener: IOrderRatingOnClick? = null
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val mealImageView: AppCompatImageView = view.findViewById(R.id.mealImageView)
-        private val numberTextView: AppCompatTextView = view.findViewById(R.id.numberTextView)
         private val nameTextView: AppCompatTextView = view.findViewById(R.id.nameTextView)
-        private val detailTextView: AppCompatTextView = view.findViewById(R.id.detailTextView)
+        private val restaurantTextView: AppCompatTextView = view.findViewById(R.id.restaurantTextView)
         private val priceTextView: AppCompatTextView = view.findViewById(R.id.priceTextView)
-        private val removeImageButton: AppCompatImageButton = view.findViewById(R.id.removeImageButton)
+        private val ratingBar: RatingBar = view.findViewById(R.id.ratingBar)
 
-        fun bind(cart: CartData, listener: ICartOnClick?) {
+        fun bind(cart: CartData, listener: IOrderRatingOnClick?) {
             nameTextView.text = cart.mealName
-            numberTextView.text = "${cart.quantity}x"
             priceTextView.text = "$${cart.price}"
-            detailTextView.text = cart.ingredients.joinToString(separator = ","){it}
+            restaurantTextView.text = cart.ingredients.joinToString(separator = ","){it}
 
             val options = RequestOptions().placeholder(R.drawable.no_data_yellow)
             Glide.with(mealImageView.context)
                 .applyDefaultRequestOptions(options)
                 .load(cart.imageUrl).into(mealImageView)
 
-            removeImageButton.setOnClickListener {
-                listener?.onClick(cart)
+            ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
+                listener?.onClick(rating,cart.mealId)
             }
         }
 
@@ -50,8 +46,7 @@ class BasketItemAdapter : RecyclerView.Adapter<BasketItemAdapter.ViewHolder>(){
         viewType: Int
     ): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.basket_item_layout, parent, false)
-
+            .inflate(R.layout.order_item_layout, parent, false)
 
         return ViewHolder(view)
     }
@@ -70,7 +65,7 @@ class BasketItemAdapter : RecyclerView.Adapter<BasketItemAdapter.ViewHolder>(){
         }
     }
 
-    fun addListener(listener: ICartOnClick?) {
+    fun addListener(listener: IOrderRatingOnClick?) {
         this.listener = listener
     }
 
