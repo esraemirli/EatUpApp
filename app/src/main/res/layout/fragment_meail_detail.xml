@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -91,7 +91,7 @@
                             android:layout_height="50dp"
                             android:backgroundTint="@color/app_color"
                             android:fontFamily="@font/patrick_hand"
-                            android:text="1"
+                            android:text="@string/meal_default_num"
                             android:textColor="@color/black" />
 
                         <com.google.android.material.button.MaterialButton
