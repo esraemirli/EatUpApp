@@ -1,8 +1,8 @@
-package com.emirli.eatup.model.entity.favorite
+package com.emirli.eatup.model
 
 import com.google.gson.annotations.SerializedName
 
-data class FavoriteStatusResponse(
+data class DataResponse(
     @SerializedName("data")
     val isSuccess: Boolean
 )

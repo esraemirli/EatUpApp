@@ -1,7 +1,6 @@
 package com.emirli.eatup.ui.restaurantdetail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,9 +17,11 @@ import com.emirli.eatup.databinding.FragmentRestaurantBinding
 import com.emirli.eatup.model.entity.Meal
 import com.emirli.eatup.model.entity.Restaurant
 import com.emirli.eatup.utils.Resource
-import com.emirli.eatup.utils.Resource.Status.SUCCESS
+import com.emirli.eatup.utils.Resource.Status
 import com.emirli.eatup.utils.adapter.MealItemAdapter
+import com.emirli.eatup.utils.gone
 import com.emirli.eatup.utils.listener.IMealOnClick
+import com.emirli.eatup.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -54,10 +55,18 @@ class RestaurantDetailFragment : Fragment() {
 
     private fun addObserver() {
         viewModel.getRestaurantById(args.restaurantId).observe(viewLifecycleOwner, { response ->
-            if (response.status == SUCCESS) {
-                response.data?.restaurantList?.get(0)?.let { setFields(it) }
+            when (response.status) {
+                Status.LOADING -> _binding.progressBar.show()
+                Status.SUCCESS -> response.data?.restaurantList?.get(0)?.let { setFields(it) }
+                Status.ERROR -> isRestaurantListVisible(false)
             }
         })
+    }
+
+    private fun isRestaurantListVisible(isVisible: Boolean) {
+        _binding.progressBar.gone()
+        _binding.containerLinearLayout.isVisible = isVisible
+        _binding.responseErrorLinearLayout.isVisible = isVisible.not()
     }
 
     private fun addListener() {
@@ -76,14 +85,14 @@ class RestaurantDetailFragment : Fragment() {
         _binding.addFavoriteButton.setOnClickListener {
             viewModel.addFavoriteRestaurant(args.restaurantId)
                 .observe(viewLifecycleOwner, { response ->
-                    if (response.status == SUCCESS)
+                    if (response.status == Status.SUCCESS)
                         setFavoriteButtonVisibility(isFavorite = true)
                 })
         }
         _binding.removeFavoriteButton.setOnClickListener {
             viewModel.removeFavoriteRestaurant(args.restaurantId)
                 .observe(viewLifecycleOwner, { response ->
-                    if (response.status == SUCCESS)
+                    if (response.status == Status.SUCCESS)
                         setFavoriteButtonVisibility(isFavorite = false)
                 })
         }
@@ -99,6 +108,8 @@ class RestaurantDetailFragment : Fragment() {
     }
 
     private fun setFields(restaurant: Restaurant) {
+        isRestaurantListVisible(true)
+
         _binding.titleTextView.text = restaurant.name
         setFavoriteButtonVisibility(restaurant.isFavorite)
 

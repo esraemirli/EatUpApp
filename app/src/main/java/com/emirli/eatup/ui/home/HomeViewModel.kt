@@ -1,7 +1,6 @@
 package com.emirli.eatup.ui.home
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.emirli.eatup.model.ApiRepository
@@ -17,8 +16,6 @@ class HomeViewModel @Inject constructor(
     private var apiRepository: ApiRepository
 )  : ViewModel() {
 
-
-    val cuisineList: MutableLiveData<Resource<CuisineListResponse>> = MutableLiveData()
 
     fun getRestaurantList(): LiveData<Resource<RestaurantResponse>> {
         return apiRepository.getRestaurantList()

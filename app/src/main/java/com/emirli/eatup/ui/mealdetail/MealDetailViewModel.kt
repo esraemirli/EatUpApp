@@ -3,6 +3,7 @@ package com.emirli.eatup.ui.mealdetail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.emirli.eatup.model.ApiRepository
+import com.emirli.eatup.model.entity.order.BasketRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -13,4 +14,6 @@ class MealDetailViewModel @Inject constructor(
 ): ViewModel() {
 
     fun getMealById(mealId : Int) = apiRepository.getMealById(mealId)
+
+    fun addBasket(request : BasketRequest) = apiRepository.addBasket(request)
 }

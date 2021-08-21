@@ -1,6 +1,7 @@
 package com.emirli.eatup.model
 
 import com.emirli.eatup.model.entity.login.LoginRequest
+import com.emirli.eatup.model.entity.order.BasketRequest
 import com.emirli.eatup.model.local.LocalDataSource
 import com.emirli.eatup.model.remote.APIService
 import com.emirli.eatup.model.remote.RemoteDataSource
@@ -10,7 +11,6 @@ import javax.inject.Inject
 
 class ApiRepository @Inject constructor(
     private var remoteDataSource: RemoteDataSource,
-    private val apiService: APIService,
     private var localDataSource: LocalDataSource
 ) {
     //Profile
@@ -65,5 +65,8 @@ class ApiRepository @Inject constructor(
         remoteDataSource.getMealById(mealId)
     }
 
+    fun addBasket(request : BasketRequest) = performNetworkOperation {
+        remoteDataSource.addBasket(request)
+    }
 
 }

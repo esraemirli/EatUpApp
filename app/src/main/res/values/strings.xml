@@ -12,4 +12,5 @@
     <string name="restaurant_meals_title">Meals</string>
     <string name="favorite_page_title">My Favorite Restaurants</string>
     <string name="add_basket_text">Add to Basket</string>
+    <string name="response_not_found">Ups!... no results found</string>
 </resources>

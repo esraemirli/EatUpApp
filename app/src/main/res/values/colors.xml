@@ -17,4 +17,5 @@
     <color name="cuisine_card_color">#E8E8E8</color>
     <color name="home_item_color">#E8E8E8</color>
     <color name="meal_item_color">#FFFFFFFF</color>
+    <color name="app_green">#7ED321</color>
 </resources>

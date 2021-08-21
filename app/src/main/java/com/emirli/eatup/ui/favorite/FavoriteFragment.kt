@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,8 +14,9 @@ import com.emirli.eatup.utils.adapter.FavoriteRestaurantAdapter
 import com.emirli.eatup.utils.listener.IRestaurantOnClick
 import androidx.fragment.app.viewModels
 import com.emirli.eatup.model.entity.Restaurant
-import com.emirli.eatup.ui.restaurantlisting.RestaurantListingFragmentDirections
-import com.emirli.eatup.utils.Resource.Status.SUCCESS
+import com.emirli.eatup.utils.Resource
+import com.emirli.eatup.utils.gone
+import com.emirli.eatup.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -60,14 +62,24 @@ class FavoriteFragment : Fragment(){
 
     private fun addObserver() {
         viewModel.getFavoriteRestaurantList().observe(viewLifecycleOwner, { response ->
-            if(response.status == SUCCESS)
-                setRestaurant(response.data?.restaurantList)
+            when (response.status) {
+                Resource.Status.LOADING -> _binding.progressBar.show()
+                Resource.Status.SUCCESS -> setRestaurant(response.data?.restaurantList)
+                Resource.Status.ERROR -> isRestaurantListVisible(false)
+            }
         })
     }
 
     private fun setRestaurant(restaurantList: List<Restaurant>?) {
+        isRestaurantListVisible(true)
         restaurantAdapter.setData(restaurantList)
         _binding.restaurantRecyclerView.adapter = restaurantAdapter
+    }
+
+    private fun isRestaurantListVisible(isVisible: Boolean) {
+        _binding.progressBar.gone()
+        _binding.restaurantRecyclerView.isVisible = isVisible
+        _binding.responseErrorLinearLayout.isVisible = isVisible.not()
     }
 
 }
