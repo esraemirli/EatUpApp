@@ -12,6 +12,6 @@ class RestaurantViewModel @Inject constructor(
     private var apiRepository: ApiRepository
 ) :  ViewModel() {
 
-    fun getRestaurantById(id : Int) = apiRepository.getRestaurantById(id)
+    fun getRestaurantById(restaurantId : Int) = apiRepository.getRestaurantById(restaurantId)
 }
 

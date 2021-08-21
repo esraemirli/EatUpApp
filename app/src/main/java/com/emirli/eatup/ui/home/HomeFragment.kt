@@ -80,9 +80,9 @@ class HomeFragment : Fragment() {
         })
         cuisineAdapter.addListener(object : ICuisineOnClick {
             override fun onClick(cuisine: Cuisine) {
-//                val action = HomeFragmentDirections.actionHomeFragmentToRestaurantListingFragment(cuisine)
-//                findNavController().navigate(action)
-//                Log.v("Click Cuisine" , cuisine.toString())
+                val action = HomeFragmentDirections.actionHomeFragmentToRestaurantListingFragment(cuisine.id, cuisine.name)
+                findNavController().navigate(action)
+                Log.v("Click Cuisine" , cuisine.toString())
             }
         })
     }

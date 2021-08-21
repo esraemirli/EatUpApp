@@ -13,6 +13,7 @@ class ApiRepository @Inject constructor(
     private val apiService: APIService,
     private var localDataSource: LocalDataSource
 ) {
+    //Profile
     fun login(request: LoginRequest) = performAuthTokenNetworkOperation(
         call = {
             remoteDataSource.login(request)
@@ -31,16 +32,23 @@ class ApiRepository @Inject constructor(
         }
     )
 
+    // Restaurants
     fun getRestaurantList() = performNetworkOperation {
         remoteDataSource.getRestaurantList()
     }
 
-    fun getRestaurantById(id : Int) = performNetworkOperation {
-        remoteDataSource.getRestaurantById(id)
+    fun getRestaurantById(restaurantId : Int) = performNetworkOperation {
+        remoteDataSource.getRestaurantById(restaurantId)
     }
 
+    fun getRestaurantsByCuisine(cuisineId : Int) = performNetworkOperation {
+        remoteDataSource.getRestaurantsByCuisine(cuisineId)
+    }
+
+    //Cuisines
     fun getCuisineList() = performNetworkOperation {
         remoteDataSource.getCuisineList()
     }
+
 
 }

@@ -76,10 +76,7 @@ class RestaurantDetailFragment : Fragment(){
         _binding.favoriteButton.setOnClickListener {
             Log.v("Restaurant Fav", "restaurant.toString()")
         }
-
     }
-
-
 
     private fun setFields(restaurant: Restaurant) {
         _binding.titleTextView.text = restaurant.name

@@ -20,7 +20,11 @@ interface APIService {
     suspend fun getRestaurantList() : Response<RestaurantResponse>
 
     @GET( "restaurant/{restaurantId}")
-    suspend fun getRestaurantById(@Path("restaurantId") id: Int) : Response<RestaurantResponse>
+    suspend fun getRestaurantById(@Path("restaurantId") restaurantId: Int) : Response<RestaurantResponse>
+
+    @GET( "restaurant/{cuisineId}/cuisine")
+    suspend fun getRestaurantsByCuisine(@Path("cuisineId") cuisineId: Int) : Response<RestaurantResponse>
+
 
     @GET( "cuisine")
     suspend fun getCuisineList() : Response<CuisineListResponse>
