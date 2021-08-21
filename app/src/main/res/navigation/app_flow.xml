@@ -54,5 +54,8 @@
         android:id="@+id/mealDetailFragment"
         android:name="com.emirli.eatup.ui.mealdetail.MealDetailFragment"
         android:label="MealDetailFragment" >
+        <argument
+            android:name="mealId"
+            app:argType="integer" />
     </fragment>
 </navigation>

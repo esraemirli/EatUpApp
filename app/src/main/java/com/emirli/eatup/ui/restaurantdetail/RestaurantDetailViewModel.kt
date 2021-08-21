@@ -13,5 +13,9 @@ class RestaurantViewModel @Inject constructor(
 ) :  ViewModel() {
 
     fun getRestaurantById(restaurantId : Int) = apiRepository.getRestaurantById(restaurantId)
+
+    fun addFavoriteRestaurant(restaurantId: Int) = apiRepository.addFavoriteRestaurant(restaurantId)
+
+    fun removeFavoriteRestaurant(restaurantId: Int) = apiRepository.removeFavoriteRestaurant(restaurantId)
 }
 

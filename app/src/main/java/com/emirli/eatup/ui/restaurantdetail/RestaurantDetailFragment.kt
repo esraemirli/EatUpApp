@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -17,13 +18,14 @@ import com.emirli.eatup.databinding.FragmentRestaurantBinding
 import com.emirli.eatup.model.entity.Meal
 import com.emirli.eatup.model.entity.Restaurant
 import com.emirli.eatup.utils.Resource
+import com.emirli.eatup.utils.Resource.Status.SUCCESS
 import com.emirli.eatup.utils.adapter.MealItemAdapter
 import com.emirli.eatup.utils.listener.IMealOnClick
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RestaurantDetailFragment : Fragment(){
-    private lateinit var _binding : FragmentRestaurantBinding
+class RestaurantDetailFragment : Fragment() {
+    private lateinit var _binding: FragmentRestaurantBinding
     private val viewModel: RestaurantViewModel by viewModels()
     private val args: RestaurantDetailFragmentArgs by navArgs()
 
@@ -52,34 +54,53 @@ class RestaurantDetailFragment : Fragment(){
 
     private fun addObserver() {
         viewModel.getRestaurantById(args.restaurantId).observe(viewLifecycleOwner, { response ->
-            if (response.status == Resource.Status.SUCCESS) {
-                println("ESRAA ${response.data?.restaurantList?.get(0)}")
+            if (response.status == SUCCESS) {
                 response.data?.restaurantList?.get(0)?.let { setFields(it) }
             }
         })
     }
 
     private fun addListener() {
-        mealAdapter.addListener(object : IMealOnClick{
+        mealAdapter.addListener(object : IMealOnClick {
             override fun onClick(meal: Meal) {
-//                Log.v("Meal Click", meal.toString())
-//                val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToMealDetailFragment(meal)
-//                findNavController().navigate(action)
+                val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToMealDetailFragment(meal.id)
+                findNavController().navigate(action)
             }
             override fun onClickBasket(meal: Meal) {
-                Log.v("Meal Filter", meal.toString())
+                addBasket(meal)
             }
         })
-        _binding.previousButton.setOnClickListener{
+        _binding.previousButton.setOnClickListener {
             findNavController().popBackStack()
         }
-        _binding.favoriteButton.setOnClickListener {
-            Log.v("Restaurant Fav", "restaurant.toString()")
+        _binding.addFavoriteButton.setOnClickListener {
+            viewModel.addFavoriteRestaurant(args.restaurantId)
+                .observe(viewLifecycleOwner, { response ->
+                    if (response.status == SUCCESS)
+                        setFavoriteButtonVisibility(isFavorite = true)
+                })
         }
+        _binding.removeFavoriteButton.setOnClickListener {
+            viewModel.removeFavoriteRestaurant(args.restaurantId)
+                .observe(viewLifecycleOwner, { response ->
+                    if (response.status == SUCCESS)
+                        setFavoriteButtonVisibility(isFavorite = false)
+                })
+        }
+    }
+
+    private fun addBasket(meal: Meal) {
+        //TODO
+    }
+
+    private fun setFavoriteButtonVisibility(isFavorite: Boolean?) {
+        _binding.addFavoriteButton.isVisible = isFavorite?.not() ?: false
+        _binding.removeFavoriteButton.isVisible = isFavorite ?: false
     }
 
     private fun setFields(restaurant: Restaurant) {
         _binding.titleTextView.text = restaurant.name
+        setFavoriteButtonVisibility(restaurant.isFavorite)
 
         val options = RequestOptions().placeholder(R.drawable.no_data_yellow)
         Glide.with(_binding.imageView.context)

@@ -13,6 +13,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.emirli.eatup.R
 import com.emirli.eatup.model.entity.Meal
 import com.emirli.eatup.utils.listener.IMealOnClick
+import java.io.File.separator
 
 class MealItemAdapter : RecyclerView.Adapter<MealItemAdapter.ViewHolder>() {
     private lateinit var mealList: List<Meal>
@@ -32,8 +33,8 @@ class MealItemAdapter : RecyclerView.Adapter<MealItemAdapter.ViewHolder>() {
                 .applyDefaultRequestOptions(options)
                 .load(meal.imageUrl).into(imageView)
             nameTextView.text = meal.name
-            detailTextView.text = "içindeki, içindeki .." //meal.ingredients.toString()
-            priceTextView.text = "$${meal.price}" //TODO formatlamak lazım..
+            detailTextView.text = meal.ingredients.joinToString (separator = ",") { it }
+            priceTextView.text = "$${meal.price}"
 
             containerLinearLayout.setOnClickListener {
                 listener?.onClick(meal)

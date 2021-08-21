@@ -24,5 +24,7 @@ data class Restaurant(
     @SerializedName("phone")
     val phone: String,
     @SerializedName("vote")
-    val vote: Double
+    val vote: Double,
+    @SerializedName("isFavorite")
+    val isFavorite: Boolean?
 )

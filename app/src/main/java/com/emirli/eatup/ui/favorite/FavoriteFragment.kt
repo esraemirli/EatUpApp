@@ -16,6 +16,7 @@ import com.emirli.eatup.utils.listener.IRestaurantOnClick
 import androidx.fragment.app.viewModels
 import com.emirli.eatup.model.entity.Restaurant
 
+
 class FavoriteFragment : Fragment(){
     private lateinit var _binding: FragmentRestaurantListingBinding
     private val viewModel: FavoriteViewModel by viewModels()

@@ -14,12 +14,15 @@ import com.bumptech.glide.request.RequestOptions
 import com.emirli.eatup.R
 import com.emirli.eatup.databinding.FragmentMeailDetailBinding
 import com.emirli.eatup.model.entity.Meal
+import com.emirli.eatup.utils.Resource
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MealDetailFragment : Fragment() {
     private lateinit var _binding: FragmentMeailDetailBinding
     private val viewModel: MealDetailViewModel by viewModels()
-//    private val args: MealDetailFragmentArgs by navArgs()
-    private lateinit var meal : Meal
+    private val args: MealDetailFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,13 +36,19 @@ class MealDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initView()
+        addObserver()
         addListener()
     }
 
     private fun initView() {
         Log.v("Fragment", "MealDetailFragment")
-//        meal = args.meal
-        setFields()
+    }
+
+    private fun addObserver() {
+        viewModel.getMealById(args.mealId).observe( viewLifecycleOwner, { response ->
+            if (response.status == Resource.Status.SUCCESS)
+                response.data?.mealList?.get(0)?.let { setFields(it) }
+        })
     }
 
     private fun addListener() {
@@ -48,7 +57,7 @@ class MealDetailFragment : Fragment() {
         }
     }
 
-    private fun setFields() {
+    private fun setFields(meal: Meal) {
         _binding.titleTextView.text = meal.name
         val options = RequestOptions().placeholder(R.drawable.no_data_yellow)
         Glide.with(_binding.imageView.context)
@@ -64,8 +73,7 @@ class MealDetailFragment : Fragment() {
         _binding.quantityLayout.textView.text = "${meal.quantity}g"
         _binding.quantityLayout.imageView.setBackgroundResource(R.mipmap.ic_quantity)
 
-        _binding.descriptionTextView.text = "İçindekişer...." //meal.ingredients?.map { it }.toString()
-
+        _binding.descriptionTextView.text = meal.ingredients.joinToString (separator = ",") { it }
         _binding.priceTextView.text = "$${meal.calorie}"
     }
 
