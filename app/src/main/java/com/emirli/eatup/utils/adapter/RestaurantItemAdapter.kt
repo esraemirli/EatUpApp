@@ -14,7 +14,7 @@ import com.emirli.eatup.model.entity.Restaurant
 import com.emirli.eatup.utils.listener.IRestaurantOnClick
 
 class RestaurantItemAdapter : RecyclerView.Adapter<RestaurantItemAdapter.ViewHolder>() {
-    private lateinit var restaurantList: List<Restaurant>
+    private var restaurantList: List<Restaurant> = mutableListOf()
     private var listener: IRestaurantOnClick? = null
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

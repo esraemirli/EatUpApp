@@ -16,14 +16,16 @@ import com.emirli.eatup.R
 import com.emirli.eatup.databinding.FragmentRestaurantBinding
 import com.emirli.eatup.model.entity.Meal
 import com.emirli.eatup.model.entity.Restaurant
+import com.emirli.eatup.utils.Resource
 import com.emirli.eatup.utils.adapter.MealItemAdapter
 import com.emirli.eatup.utils.listener.IMealOnClick
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RestaurantDetailFragment : Fragment(){
     private lateinit var _binding : FragmentRestaurantBinding
     private val viewModel: RestaurantViewModel by viewModels()
-//    private val args: RestaurantDetailFragmentArgs by navArgs()
-    private lateinit var restaurant: Restaurant
+    private val args: RestaurantDetailFragmentArgs by navArgs()
 
     private var mealAdapter = MealItemAdapter()
 
@@ -39,7 +41,22 @@ class RestaurantDetailFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        addObserver()
         addListener()
+    }
+
+    private fun initView() {
+        _binding.mealRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+    }
+
+    private fun addObserver() {
+        viewModel.getRestaurantById(args.restaurantId).observe(viewLifecycleOwner, { response ->
+            if (response.status == Resource.Status.SUCCESS) {
+                println("ESRAA ${response.data?.restaurantList?.get(0)}")
+                response.data?.restaurantList?.get(0)?.let { setFields(it) }
+            }
+        })
     }
 
     private fun addListener() {
@@ -57,20 +74,16 @@ class RestaurantDetailFragment : Fragment(){
             findNavController().popBackStack()
         }
         _binding.favoriteButton.setOnClickListener {
-            Log.v("Restaurant Fav", restaurant.toString())
+            Log.v("Restaurant Fav", "restaurant.toString()")
         }
 
     }
 
-    private fun initView() {
-//        restaurant = args.restaurant
-        _binding.mealRecyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        _binding.titleTextView.text = restaurant.name
-        setFields()
-    }
 
-    private fun setFields() {
+
+    private fun setFields(restaurant: Restaurant) {
+        _binding.titleTextView.text = restaurant.name
+
         val options = RequestOptions().placeholder(R.drawable.no_data_yellow)
         Glide.with(_binding.imageView.context)
             .applyDefaultRequestOptions(options)

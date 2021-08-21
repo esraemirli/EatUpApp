@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_flow"
     app:startDestination="@id/homeFragment">
 
@@ -22,6 +23,9 @@
         <action
             android:id="@+id/action_restaurantDetailFragment_to_mealDetailFragment"
             app:destination="@id/mealDetailFragment" />
+        <argument
+            android:name="restaurantId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/restaurantListingFragment"
