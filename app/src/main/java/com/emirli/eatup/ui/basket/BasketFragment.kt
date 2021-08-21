@@ -81,11 +81,12 @@ class BasketFragment : Fragment() {
         _binding.previousButton.setOnClickListener {
             findNavController().popBackStack()
         }
-        _binding.orderLinearLayout.setOnClickListener {
+        _binding.buyBasketButton.setOnClickListener {
             viewModel.buyBasket().observe(viewLifecycleOwner, { response ->
-                if (response.status == Resource.Status.SUCCESS)
-                    println("")
-//                    getBasketItemData()
+                if (response.status == Resource.Status.SUCCESS) {
+                    _binding.basketAnimation.show()
+                    _binding.buyBasketButton.gone()
+                }
             })
         }
         basketAdapter.addListener(object : ICartOnClick {
@@ -96,7 +97,6 @@ class BasketFragment : Fragment() {
                             getBasketItemData()
                     })
             }
-
         })
     }
 

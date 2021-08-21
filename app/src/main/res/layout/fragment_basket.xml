@@ -120,16 +120,33 @@
                 tools:text="$14,50" />
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/addBasketButton"
-            android:layout_width="200dp"
-            android:layout_weight="1"
+        <FrameLayout
+            android:layout_width="0dp"
             android:layout_height="70dp"
-            android:backgroundTint="@color/app_red"
-            android:text="Order Now"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            app:cornerRadius="15dp" />
+            android:layout_weight="2">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/basketAnimation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"
+                android:layout_gravity="end"
+                android:visibility="gone"
+                app:lottie_rawRes="@raw/buy2"
+                app:lottie_repeatCount="4"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buyBasketButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/app_red"
+                android:text="Buy Now"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                app:cornerRadius="15dp" />
+        </FrameLayout>
     </LinearLayout>
 
 </LinearLayout>
