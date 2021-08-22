@@ -114,54 +114,31 @@
                     android:orientation="vertical"
                     android:padding="16dp">
 
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <include
                             android:id="@+id/calorieLayout"
-                            layout="@layout/icon_item_layout"
+                            layout="@layout/meal_item_icon_layout"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="24dp" />
-
-                        <include
-                            android:id="@+id/voteLayout"
-                            layout="@layout/icon_item_layout"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="24dp" />
+                            android:layout_height="wrap_content" />
 
                         <include
                             android:id="@+id/quantityLayout"
-                            layout="@layout/icon_item_layout"
+                            layout="@layout/meal_item_icon_layout"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp" />
+                            android:layout_height="wrap_content" />
+
+                        <include
+                            android:id="@+id/ingredientsLayout"
+                            layout="@layout/meal_item_icon_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="@font/patrick_hand"
-                        android:text="@string/restaurant_description"
-                        android:textColor="@color/black"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/descriptionTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="8dp"
-                        android:fontFamily="@font/patrick_hand"
-                        android:textColor="@color/dark_grey"
-                        android:textSize="18sp"
-                        tools:text="Meal Detail Text" />
                 </LinearLayout>
 
             </FrameLayout>

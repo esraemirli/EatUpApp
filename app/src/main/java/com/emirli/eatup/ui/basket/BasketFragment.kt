@@ -1,5 +1,6 @@
 package com.emirli.eatup.ui.basket
 
+import android.animation.Animator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.emirli.eatup.R
 import com.emirli.eatup.databinding.FragmentBasketBinding
 import com.emirli.eatup.model.entity.CartData
 import com.emirli.eatup.utils.Resource
@@ -96,6 +98,20 @@ class BasketFragment : Fragment() {
                         if (response.status == Resource.Status.SUCCESS)
                             getBasketItemData()
                     })
+            }
+        })
+        _binding.basketAnimation.addAnimatorListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator?) {
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                findNavController().navigate(R.id.action_basketFragment_to_lastOrderFragment)
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+            }
+
+            override fun onAnimationRepeat(animation: Animator?) {
             }
         })
     }

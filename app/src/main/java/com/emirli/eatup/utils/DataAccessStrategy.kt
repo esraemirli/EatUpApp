@@ -31,13 +31,9 @@ fun <T> performAuthTokenNetworkOperation(
         val networkCall = call.invoke()
         if (networkCall.status == Resource.Status.SUCCESS) {
             val data = networkCall.data!!
-
             if (data is LoginResponse) {
                 saveToken(data.token)
             }
-//            if (data is RegisterResponse) {
-//                saveToken(data.token)
-//            }
             emit(Resource.success(data))
         } else if (networkCall.status == Resource.Status.ERROR) {
             emit(

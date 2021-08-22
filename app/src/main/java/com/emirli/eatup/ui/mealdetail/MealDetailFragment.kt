@@ -72,13 +72,12 @@ class MealDetailFragment : Fragment() {
         _binding.calorieLayout.textView.text = "${meal.calorie} cal"
         _binding.calorieLayout.imageView.setBackgroundResource(R.mipmap.ic_calorie)
 
-        _binding.voteLayout.textView.text = "${meal.vote} vote"
-        _binding.voteLayout.imageView.setBackgroundResource(R.mipmap.ic_vote)
-
         _binding.quantityLayout.textView.text = "${meal.quantity}g"
         _binding.quantityLayout.imageView.setBackgroundResource(R.mipmap.ic_quantity)
 
-        _binding.descriptionTextView.text = meal.ingredients.joinToString(separator = ",") { it }
+        _binding.ingredientsLayout.textView.text =  meal.ingredients.joinToString(separator = ",") { it }
+        _binding.ingredientsLayout.imageView.setBackgroundResource(R.mipmap.ic_ingredients)
+
         _binding.priceTextView.text = "$${meal.price}"
     }
 

@@ -1,5 +1,6 @@
 package com.emirli.eatup.ui.lastorder
 
+import android.animation.Animator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.emirli.eatup.R
@@ -41,6 +43,27 @@ class LastOrderFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        addListener()
+    }
+
+    private fun addListener() {
+        _binding.previousButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        _binding.starAnimation.addAnimatorListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator?) {
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                _binding.starAnimation.gone()
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+            }
+
+            override fun onAnimationRepeat(animation: Animator?) {
+            }
+        })
     }
 
 
@@ -96,21 +119,25 @@ class LastOrderFragment : Fragment(){
     private fun createRecyclerView(cartDataList: ArrayList<CartData>): RecyclerView {
         val recyclerView = RecyclerView(requireContext())
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        val adapter = OrderItemAdapter()
-        adapter.setData(cartDataList)
-        recyclerView.adapter = adapter
+        val orderAdapter = OrderItemAdapter()
+        orderAdapter.setData(cartDataList)
+        recyclerView.adapter = orderAdapter
 
-        adapter.addListener(object : IOrderRatingOnClick{
-            override fun onClick(rating: Float, mealId: Int) {
-                sendRating(rating,mealId)
-                println("ESRAA $rating ratiin")
+        orderAdapter.addListener(object : IOrderRatingOnClick{
+            override fun onClick(vote: Float, mealId: Int, cartId : Int) {
+                sendRating(vote,mealId,cartId, orderAdapter)
             }
         })
         return recyclerView
     }
 
-    private fun sendRating(rating: Float, mealId: Int) {
-        
+    private fun sendRating(vote: Float, mealId: Int, cartId: Int, orderAdapter: OrderItemAdapter) {
+        viewModel.rateOrder(vote,mealId,cartId).observe(viewLifecycleOwner, { response ->
+            if(response.status == Resource.Status.SUCCESS) {
+                _binding.starAnimation.show()
+                orderAdapter.updateItem(cartId, mealId,vote)
+            }
+        })
     }
 
 }

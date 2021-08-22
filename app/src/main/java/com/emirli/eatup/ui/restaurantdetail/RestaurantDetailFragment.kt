@@ -133,7 +133,7 @@ class RestaurantDetailFragment : Fragment() {
         _binding.deliveryTimeLayout.textView.text = restaurant.deliveryTime
         _binding.deliveryTimeLayout.imageView.setBackgroundResource(R.mipmap.ic_alarm)
 
-        _binding.voteLayout.textView.text = restaurant.vote.toString()
+        _binding.voteLayout.textView.text = String.format("%.2f", restaurant.vote)
         _binding.voteLayout.imageView.setBackgroundResource(R.mipmap.ic_vote)
 
         _binding.descriptionTextView.text = restaurant.detail

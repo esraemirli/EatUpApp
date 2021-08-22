@@ -16,6 +16,7 @@ import com.emirli.eatup.utils.listener.IOrderRatingOnClick
 class OrderItemAdapter : RecyclerView.Adapter<OrderItemAdapter.ViewHolder>(){
     private lateinit var cartList: MutableList<CartData>
     private var listener: IOrderRatingOnClick? = null
+    private var defaultRating = 0F
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val mealImageView: AppCompatImageView = view.findViewById(R.id.mealImageView)
@@ -24,10 +25,17 @@ class OrderItemAdapter : RecyclerView.Adapter<OrderItemAdapter.ViewHolder>(){
         private val priceTextView: AppCompatTextView = view.findViewById(R.id.priceTextView)
         private val ratingBar: RatingBar = view.findViewById(R.id.ratingBar)
 
-        fun bind(cart: CartData, listener: IOrderRatingOnClick?) {
+        fun bind(cart: CartData, listener: IOrderRatingOnClick?, defaultRating : Float) {
             nameTextView.text = cart.mealName
             priceTextView.text = "$${cart.price}"
-            restaurantTextView.text = cart.ingredients.joinToString(separator = ","){it}
+            restaurantTextView.text = cart.restaurantName
+            ratingBar.rating = defaultRating
+
+            if(cart.rate != null) {
+                ratingBar.setIsIndicator(true)
+                ratingBar.rating = cart.rate
+            }
+
 
             val options = RequestOptions().placeholder(R.drawable.no_data_yellow)
             Glide.with(mealImageView.context)
@@ -35,7 +43,7 @@ class OrderItemAdapter : RecyclerView.Adapter<OrderItemAdapter.ViewHolder>(){
                 .load(cart.imageUrl).into(mealImageView)
 
             ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
-                listener?.onClick(rating,cart.mealId)
+                listener?.onClick(rating,cart.mealId,cart.cartId)
             }
         }
 
@@ -53,12 +61,13 @@ class OrderItemAdapter : RecyclerView.Adapter<OrderItemAdapter.ViewHolder>(){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = cartList[position]
-        holder.bind(item, listener)
+        holder.bind(item, listener, defaultRating)
     }
 
     override fun getItemCount(): Int = cartList.size
 
     fun setData(cartList: List<CartData>?) {
+        defaultRating = 0F
         cartList?.let {
             this.cartList = cartList as MutableList<CartData>
             notifyDataSetChanged()
@@ -67,6 +76,13 @@ class OrderItemAdapter : RecyclerView.Adapter<OrderItemAdapter.ViewHolder>(){
 
     fun addListener(listener: IOrderRatingOnClick?) {
         this.listener = listener
+    }
+
+    fun updateItem(cartId: Int, mealId: Int, vote: Float) {
+        val order = cartList.first { it.cartId == cartId && it.mealId == mealId }
+        val position = cartList.indexOf(order)
+        defaultRating = vote
+        notifyItemChanged(position)
     }
 
 }

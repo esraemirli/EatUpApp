@@ -2,6 +2,8 @@ package com.emirli.eatup.model
 
 import com.emirli.eatup.model.entity.login.LoginRequest
 import com.emirli.eatup.model.entity.basket.BasketRequest
+import com.emirli.eatup.model.entity.login.RegisterRequest
+import com.emirli.eatup.model.entity.profile.UserRequest
 import com.emirli.eatup.model.local.LocalDataSource
 import com.emirli.eatup.model.remote.RemoteDataSource
 import com.emirli.eatup.utils.performAuthTokenNetworkOperation
@@ -22,7 +24,7 @@ class ApiRepository @Inject constructor(
         }
     )
 
-    fun register(request: LoginRequest) = performAuthTokenNetworkOperation(
+    fun register(request: RegisterRequest) = performAuthTokenNetworkOperation(
         call = {
             remoteDataSource.register(request)
         },
@@ -52,8 +54,16 @@ class ApiRepository @Inject constructor(
         remoteDataSource.getLastOrders()
     }
 
+    fun rateOrder(mealId: Int, vote: Float,  cartId : Int) = performNetworkOperation {
+        remoteDataSource.rateOrder(mealId,vote,cartId)
+    }
+
     fun getUserDetail() = performNetworkOperation {
         remoteDataSource.getUserDetail()
+    }
+
+    fun updateUser(request: UserRequest) = performNetworkOperation {
+        remoteDataSource.updateUser(request)
     }
 
     fun getRestaurantById(restaurantId: Int) = performNetworkOperation {
@@ -88,6 +98,10 @@ class ApiRepository @Inject constructor(
 
     fun addBasket(request: BasketRequest) = performNetworkOperation {
         remoteDataSource.addBasket(request)
+    }
+
+    fun logout() {
+        localDataSource.saveToken("")
     }
 
 }

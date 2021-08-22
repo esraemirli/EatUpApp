@@ -14,5 +14,6 @@ class LastOrderViewModel @Inject constructor(
 ) :  ViewModel() {
 
     fun getLastOrders() = apiRepository.getLastOrders()
+    fun rateOrder(vote: Float, mealId: Int, cartId : Int) = apiRepository.rateOrder(mealId, vote, cartId)
 
 }

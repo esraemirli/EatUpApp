@@ -5,11 +5,12 @@ import com.emirli.eatup.model.entity.User
 import com.emirli.eatup.model.entity.cuisine.CuisineListResponse
 import com.emirli.eatup.model.entity.login.LoginRequest
 import com.emirli.eatup.model.entity.login.LoginResponse
-import com.emirli.eatup.model.entity.login.RegisterResponse
 import com.emirli.eatup.model.entity.meal.MealResponse
 import com.emirli.eatup.model.entity.basket.BasketRequest
 import com.emirli.eatup.model.entity.basket.BasketResponse
 import com.emirli.eatup.model.entity.lastorder.LastOrderResponse
+import com.emirli.eatup.model.entity.login.RegisterRequest
+import com.emirli.eatup.model.entity.profile.UserRequest
 import com.emirli.eatup.model.entity.restaurant.RestaurantResponse
 import retrofit2.Response
 import retrofit2.http.*
@@ -20,7 +21,7 @@ interface APIService {
     suspend fun login(@Body request: LoginRequest?): Response<LoginResponse>
 
     @POST("users/register")
-    suspend fun register(@Body request: LoginRequest?): Response<RegisterResponse>
+    suspend fun register(@Body request: RegisterRequest?): Response<LoginResponse>
 
     @GET("restaurant")
     suspend fun getRestaurantList(): Response<RestaurantResponse>
@@ -36,6 +37,13 @@ interface APIService {
 
     @GET("cart/sold-meals")
     suspend fun getLastOrders(): Response<LastOrderResponse>
+
+    @POST("meal/rate/{mealId}")
+    suspend fun rateOrder(
+        @Path("mealId") mealId: Int,
+        @Query("vote") vote: Float,
+         @Query("cartId") cartId: Int
+    ): Response<DataResponse>
 
     @GET("users/get-user")
     suspend fun getUserDetail(): Response<User>
@@ -63,5 +71,8 @@ interface APIService {
 
     @POST("cart/add")
     suspend fun addBasket(@Body request: BasketRequest): Response<DataResponse>
+
+    @POST("users/update-user")
+    suspend fun updateUser(@Body request: UserRequest): Response<DataResponse>
 
 }

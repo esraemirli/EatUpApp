@@ -12,17 +12,36 @@
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailTextView"
-            app:boxBackgroundColor="@android:color/transparent"
-            android:background="@android:color/transparent"
+            android:id="@+id/nameTextView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:boxBackgroundColor="@android:color/transparent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="50sp"
-                android:layout_marginTop="30sp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@null"
+                android:fontFamily="@font/patrick_hand"
+                android:hint="@string/hint_name"
+                android:inputType="textPersonName"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:boxBackgroundColor="@android:color/transparent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50sp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/patrick_hand"
                 android:hint="@string/hint_email"
                 android:inputType="textEmailAddress"
@@ -31,17 +50,17 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordTextView"
-            app:boxBackgroundColor="@android:color/transparent"
-            android:background="@android:color/transparent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:boxBackgroundColor="@android:color/transparent"
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="50sp"
-                android:layout_marginTop="30sp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/patrick_hand"
                 android:hint="@string/hint_password_text"
                 android:inputType="textPassword"
@@ -50,20 +69,20 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/loginButton"
+            android:id="@+id/signupButton"
             android:layout_width="250dp"
             android:layout_height="75dp"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/app_red"
-            android:text="@string/login_text"
+            android:text="@string/sign_up_text"
             android:textAllCaps="false"
             android:textSize="18sp"
             app:cornerRadius="15dp" />
     </LinearLayout>
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/loginAnimation"
+        android:id="@+id/signupAnimation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
@@ -75,4 +94,5 @@
         app:lottie_loop="false"
         app:lottie_rawRes="@raw/success_entry"
         app:lottie_repeatCount="0" />
+
 </LinearLayout>

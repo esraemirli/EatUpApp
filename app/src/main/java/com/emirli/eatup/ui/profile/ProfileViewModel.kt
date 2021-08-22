@@ -15,6 +15,9 @@ class ProfileViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun getUserDetail() = apiRepository.getUserDetail()
-    fun updateUser(request: UserRequest) = apiRepository.getUserDetail()
+    fun updateUser(request: UserRequest) = apiRepository.updateUser(request)
+    fun logout() {
+        apiRepository.logout()
+    }
 
 }

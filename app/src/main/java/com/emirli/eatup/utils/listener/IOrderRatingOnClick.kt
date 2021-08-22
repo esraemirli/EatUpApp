@@ -1,5 +1,5 @@
 package com.emirli.eatup.utils.listener
 
 interface IOrderRatingOnClick {
-    fun onClick(rating: Float, mealId: Int)
+    fun onClick(vote: Float, mealId: Int, cartId : Int)
 }

@@ -10,13 +10,9 @@
         android:label="OnboardingBaseFragment" >
         <action
             android:id="@+id/action_onboardingBaseFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/entryFragment" />
     </fragment>
 
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.emirli.eatup.ui.login.LoginFragment"
-        android:label="LoginFragment" />
 
     <fragment
         android:id="@+id/splashFragment"
@@ -27,7 +23,11 @@
             app:destination="@id/onboardingBaseFragment" />
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/entryFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/entryFragment"
+        android:name="com.emirli.eatup.ui.entry.EntryFragment"
+        android:label="EntryFragment" />
 
 </navigation>

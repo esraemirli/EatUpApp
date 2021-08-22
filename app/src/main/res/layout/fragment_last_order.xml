@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -40,14 +41,30 @@
                     tools:text="Last Orders" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/orderLinearLayout"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
-            </LinearLayout>
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/starAnimation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="false"
+                    android:layout_gravity="end"
+                    android:visibility="gone"
+                    app:lottie_rawRes="@raw/success_rating"
+                    app:lottie_repeatCount="1"/>
 
+                <LinearLayout
+                    android:id="@+id/orderLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+            </FrameLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

@@ -134,7 +134,7 @@
                 app:lottie_loop="false"
                 android:layout_gravity="end"
                 android:visibility="gone"
-                app:lottie_rawRes="@raw/buy2"
+                app:lottie_rawRes="@raw/success_buying"
                 app:lottie_repeatCount="4"/>
 
             <com.google.android.material.button.MaterialButton

@@ -27,4 +27,10 @@
     <string name="hint_address">Enter your address</string>
     <string name="hint_password">* * * * * *</string>
     <string name="password_title">Password</string>
+    <string name="hint_email">Enter your email address</string>
+    <string name="hint_password_text">Enter your password</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="login_text">Login</string>
+    <string name="sign_up_text">Sign Up</string>
+    <string name="logout_text">Logout</string>
 </resources>

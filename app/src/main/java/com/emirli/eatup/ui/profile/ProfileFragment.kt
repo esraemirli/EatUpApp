@@ -1,5 +1,6 @@
 package com.emirli.eatup.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.emirli.eatup.R
 import com.emirli.eatup.databinding.FragmentProfileBinding
 import com.emirli.eatup.model.entity.User
 import com.emirli.eatup.model.entity.profile.UserRequest
+import com.emirli.eatup.ui.splash.SplashActivity
 import com.emirli.eatup.utils.Resource
 import com.emirli.eatup.utils.gone
 import com.emirli.eatup.utils.show
@@ -42,6 +44,12 @@ class ProfileFragment : Fragment() {
     private fun addListener() {
         _binding.saveButton.setOnClickListener { updateUserInformation() }
         _binding.closeImageButton.setOnClickListener { findNavController().popBackStack() }
+        _binding.logoutButton.setOnClickListener {
+            viewModel.logout()
+            val intent = Intent(context, SplashActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+        }
     }
 
     private fun updateUserInformation() {
@@ -51,8 +59,9 @@ class ProfileFragment : Fragment() {
             address = _binding.addressLayout.fieldEditText.text.toString(),
             password = _binding.passwordLayout.fieldEditText.text.toString(),
         )
-        viewModel.updateUser(request).observe(viewLifecycleOwner, {
-
+        viewModel.updateUser(request).observe(viewLifecycleOwner, { response ->
+            if(response.status == Resource.Status.SUCCESS)
+                findNavController().popBackStack()
         })
     }
 
