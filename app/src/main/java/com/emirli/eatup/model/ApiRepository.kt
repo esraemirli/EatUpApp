@@ -62,6 +62,10 @@ class ApiRepository @Inject constructor(
         remoteDataSource.getUserDetail()
     }
 
+    fun getUserImage() = performNetworkOperation {
+        remoteDataSource.getUserImage()
+    }
+
     fun updateUser(request: UserRequest) = performNetworkOperation {
         remoteDataSource.updateUser(request)
     }

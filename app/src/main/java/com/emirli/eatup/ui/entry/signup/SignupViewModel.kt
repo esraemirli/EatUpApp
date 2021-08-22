@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.emirli.eatup.model.ApiRepository
-import com.emirli.eatup.model.DataResponse
-import com.emirli.eatup.model.entity.login.LoginRequest
 import com.emirli.eatup.model.entity.login.LoginResponse
 import com.emirli.eatup.model.entity.login.RegisterRequest
 import com.emirli.eatup.utils.Resource

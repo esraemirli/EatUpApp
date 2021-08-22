@@ -12,4 +12,12 @@ class LocalDataSource @Inject constructor(private val sharedPrefManager: SharedP
         return sharedPrefManager.getToken()
     }
 
+    fun saveImage(image: String) {
+        sharedPrefManager.saveImage(image)
+    }
+
+    fun getImage(): String? {
+        return sharedPrefManager.getImage()
+    }
+
 }

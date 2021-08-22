@@ -8,7 +8,6 @@ import androidx.fragment.app.viewModels
 import com.emirli.eatup.databinding.FragmentHomeBinding
 import android.view.LayoutInflater
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -50,11 +49,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun initView() {
-        val options = RequestOptions().placeholder(R.drawable.ic_profile)
-        Glide.with(_binding.profileImageButton.context)
-            .applyDefaultRequestOptions(options)
-//            .load(viewModel.imageUrl).into(_binding.profileImageButton)
-
         _binding.restaurantRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         _binding.cuisineRecyclerView.layoutManager =
@@ -62,6 +56,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun addObserver() {
+        viewModel.getUserImage().observe(viewLifecycleOwner, { response ->
+            if(response.status == Resource.Status.SUCCESS) {
+                val options = RequestOptions().placeholder(R.drawable.ic_profile)
+                Glide.with(_binding.profileImageButton.context)
+                    .applyDefaultRequestOptions(options)
+                    .load(response.data?.image).into(_binding.profileImageButton)
+            }
+        })
+
         viewModel.getRestaurantList().observe(viewLifecycleOwner, { response ->
             when (response.status) {
                 Resource.Status.LOADING -> _binding.restaurantProgressBar.show()

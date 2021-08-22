@@ -29,6 +29,7 @@ class HomeViewModel @Inject constructor(
         return apiRepository.getCuisineList()
     }
 
+    fun getUserImage() = apiRepository.getUserImage()
 
     fun searchTextOnRestaurantList(text: String?): List<Restaurant>? {
         if (text.isNullOrEmpty())

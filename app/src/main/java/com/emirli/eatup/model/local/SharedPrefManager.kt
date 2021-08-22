@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 class SharedPrefManager(context: Context) {
     companion object {
         const val TOKEN = "com.emirli.eatup.model.TOKEN"
+        const val IMAGE = "com.emirli.eatup.model.IMAGE"
     }
 
     private val sharedPreferences: SharedPreferences =
@@ -17,6 +18,14 @@ class SharedPrefManager(context: Context) {
 
     fun getToken(): String? {
         return sharedPreferences.getString(TOKEN, "")
+    }
+
+    fun saveImage(token: String) {
+        sharedPreferences.edit().putString(IMAGE, token).apply()
+    }
+
+    fun getImage(): String? {
+        return sharedPreferences.getString(IMAGE, "")
     }
 
     fun setOnboardingSeen() {
