@@ -1,7 +1,6 @@
 package com.emirli.eatup.ui.restaurantlisting
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.emirli.eatup.R
 import com.emirli.eatup.databinding.FragmentRestaurantListingBinding
-import com.emirli.eatup.model.entity.Restaurant
+import com.emirli.eatup.model.entity.restaurant.Restaurant
 import com.emirli.eatup.utils.Resource.Status
 import com.emirli.eatup.utils.adapter.RestaurantListingItemAdapter
 import com.emirli.eatup.utils.gone
@@ -20,9 +20,8 @@ import com.emirli.eatup.utils.listener.IRestaurantOnClick
 import com.emirli.eatup.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
-class RestaurantListingFragment : Fragment(){
+class RestaurantListingFragment : Fragment() {
     private lateinit var _binding: FragmentRestaurantListingBinding
     private val viewModel: RestaurantListingViewModel by viewModels()
     private val args: RestaurantListingFragmentArgs by navArgs()
@@ -46,10 +45,10 @@ class RestaurantListingFragment : Fragment(){
     }
 
     private fun initView() {
-        Log.v("Fragment" , "RestaurantListing")
         _binding.restaurantRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        _binding.pageTitleTextView.text = "${args.cuisineName} Restaurants"
+        _binding.pageTitleTextView.text =
+            getString(R.string.cuisine_string, args.cuisineName)
     }
 
     private fun addListener() {
@@ -58,7 +57,10 @@ class RestaurantListingFragment : Fragment(){
         }
         restaurantAdapter.addListener(object : IRestaurantOnClick {
             override fun onClick(restaurant: Restaurant) {
-                val action = RestaurantListingFragmentDirections.actionRestaurantListingFragmentToRestaurantDetailFragment(restaurant.id)
+                val action =
+                    RestaurantListingFragmentDirections.actionRestaurantListingFragmentToRestaurantDetailFragment(
+                        restaurant.id
+                    )
                 findNavController().navigate(action)
             }
         })

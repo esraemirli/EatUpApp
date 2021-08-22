@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.emirli.eatup.R
 import com.emirli.eatup.databinding.FragmentMeailDetailBinding
-import com.emirli.eatup.model.entity.Meal
+import com.emirli.eatup.model.entity.meal.Meal
 import com.emirli.eatup.model.entity.basket.BasketRequest
 import com.emirli.eatup.utils.Resource
 import com.emirli.eatup.utils.gone
@@ -25,7 +25,7 @@ class MealDetailFragment : Fragment() {
     private lateinit var _binding: FragmentMeailDetailBinding
     private val viewModel: MealDetailViewModel by viewModels()
     private val args: MealDetailFragmentArgs by navArgs()
-    var number: Int = 1;
+    private var number: Int = 1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,7 +42,6 @@ class MealDetailFragment : Fragment() {
         addObserver()
         addListener()
     }
-
 
     private fun addObserver() {
         viewModel.getMealById(args.mealId).observe(viewLifecycleOwner, { response ->
@@ -69,16 +68,16 @@ class MealDetailFragment : Fragment() {
             .applyDefaultRequestOptions(options)
             .load(meal.imageUrl).into(_binding.imageView)
 
-        _binding.calorieLayout.textView.text = "${meal.calorie} cal"
+        _binding.calorieLayout.textView.text = getString(R.string.calorie_string, "cal", meal.calorie)
         _binding.calorieLayout.imageView.setBackgroundResource(R.mipmap.ic_calorie)
 
-        _binding.quantityLayout.textView.text = "${meal.quantity}g"
+        _binding.quantityLayout.textView.text = getString(R.string.quantity_string, "g", meal.quantity)
         _binding.quantityLayout.imageView.setBackgroundResource(R.mipmap.ic_quantity)
 
         _binding.ingredientsLayout.textView.text =  meal.ingredients.joinToString(separator = ",") { it }
         _binding.ingredientsLayout.imageView.setBackgroundResource(R.mipmap.ic_ingredients)
 
-        _binding.priceTextView.text = "$${meal.price}"
+        _binding.priceTextView.text = getString(R.string.price_string, "$" ,meal.price)
     }
 
     private fun addListener() {

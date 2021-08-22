@@ -1,5 +1,6 @@
 package com.emirli.eatup.utils.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.emirli.eatup.R
-import com.emirli.eatup.model.entity.Restaurant
+import com.emirli.eatup.model.entity.restaurant.Restaurant
 import com.emirli.eatup.utils.listener.IRestaurantOnClick
 
 class FavoriteRestaurantAdapter : RecyclerView.Adapter<FavoriteRestaurantAdapter.ViewHolder>() {
@@ -25,10 +26,10 @@ class FavoriteRestaurantAdapter : RecyclerView.Adapter<FavoriteRestaurantAdapter
         private val containerLinearLayout: LinearLayout =
             view.findViewById(R.id.containerLinearLayout)
 
-        fun bind(restaurant: Restaurant, listener: IRestaurantOnClick?) {
+        fun bind(restaurant: Restaurant, listener: IRestaurantOnClick?, context: Context) {
             nameTextView.text = restaurant.name
             voteTextView.text = restaurant.vote.toString()
-            cuisineTextView.text = "${restaurant.cuisines[0]}"
+            cuisineTextView.text = context.getString(R.string.cuisine_item_string, restaurant.cuisines[0])
 
             val options = RequestOptions().placeholder(R.drawable.no_data_yellow)
             Glide.with(imageView.context)
@@ -53,7 +54,8 @@ class FavoriteRestaurantAdapter : RecyclerView.Adapter<FavoriteRestaurantAdapter
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = restaurantList[position]
-        holder.bind(item, listener)
+        val context = holder.itemView.context
+        holder.bind(item, listener, context)
     }
 
     override fun getItemCount(): Int = restaurantList.size

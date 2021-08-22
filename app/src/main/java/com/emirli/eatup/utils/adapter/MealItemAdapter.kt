@@ -1,5 +1,6 @@
 package com.emirli.eatup.utils.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +14,12 @@ import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.emirli.eatup.R
-import com.emirli.eatup.model.entity.Meal
+import com.emirli.eatup.model.entity.meal.Meal
 import com.emirli.eatup.utils.listener.IMealOnClick
 
 class MealItemAdapter : RecyclerView.Adapter<MealItemAdapter.ViewHolder>() {
     private lateinit var mealList: List<Meal>
-    private var basketAnimationVisibility : Boolean = false
+    private var basketAnimationVisibility: Boolean = false
     private var listener: IMealOnClick? = null
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -27,18 +28,25 @@ class MealItemAdapter : RecyclerView.Adapter<MealItemAdapter.ViewHolder>() {
         private val detailTextView: AppCompatTextView = view.findViewById(R.id.detailTextView)
         private val priceTextView: AppCompatTextView = view.findViewById(R.id.priceTextView)
         private val imageView: AppCompatImageView = view.findViewById(R.id.iconImageView)
-        private val basketImageButton: AppCompatImageButton = view.findViewById(R.id.basketImageButton)
+        private val basketImageButton: AppCompatImageButton =
+            view.findViewById(R.id.basketImageButton)
         private val basketAnimation: LottieAnimationView = view.findViewById(R.id.basketAnimation)
-        private val containerLinearLayout: LinearLayout = view.findViewById(R.id.containerLinearLayout)
+        private val containerLinearLayout: LinearLayout =
+            view.findViewById(R.id.containerLinearLayout)
 
-        fun bind(meal: Meal, listener: IMealOnClick?, basketAnimationVisibility: Boolean) {
+        fun bind(
+            meal: Meal,
+            listener: IMealOnClick?,
+            basketAnimationVisibility: Boolean,
+            context: Context
+        ) {
             val options = RequestOptions().placeholder(R.drawable.no_data_yellow)
             Glide.with(imageView.context)
                 .applyDefaultRequestOptions(options)
                 .load(meal.imageUrl).into(imageView)
             nameTextView.text = meal.name
-            detailTextView.text = meal.ingredients.joinToString (separator = ",") { it }
-            priceTextView.text = "$${meal.price}"
+            detailTextView.text = meal.ingredients.joinToString(separator = ",") { it }
+            priceTextView.text = context.getString(R.string.price_string, "$", meal.price)
 
             containerLinearLayout.setOnClickListener {
                 listener?.onClick(meal)
@@ -65,7 +73,8 @@ class MealItemAdapter : RecyclerView.Adapter<MealItemAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mealList[position]
-        holder.bind(item, listener, basketAnimationVisibility)
+        val context = holder.itemView.context
+        holder.bind(item, listener, basketAnimationVisibility, context)
     }
 
     override fun getItemCount(): Int = mealList.size
@@ -78,7 +87,7 @@ class MealItemAdapter : RecyclerView.Adapter<MealItemAdapter.ViewHolder>() {
         }
     }
 
-    fun isBasketAnimationVisible(meal : Meal, isVisible: Boolean) {
+    fun isBasketAnimationVisible(meal: Meal, isVisible: Boolean) {
         basketAnimationVisibility = isVisible
         val position = mealList.indexOf(meal)
         notifyItemChanged(position)

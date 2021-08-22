@@ -1,7 +1,6 @@
 package com.emirli.eatup.ui.restaurantdetail
 
 import android.content.Intent
-import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,8 +16,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.emirli.eatup.R
 import com.emirli.eatup.databinding.FragmentRestaurantBinding
-import com.emirli.eatup.model.entity.Meal
-import com.emirli.eatup.model.entity.Restaurant
+import com.emirli.eatup.model.entity.meal.Meal
+import com.emirli.eatup.model.entity.restaurant.Restaurant
 import com.emirli.eatup.model.entity.basket.BasketRequest
 import com.emirli.eatup.utils.Resource.Status
 import com.emirli.eatup.utils.adapter.MealItemAdapter
@@ -26,9 +25,7 @@ import com.emirli.eatup.utils.gone
 import com.emirli.eatup.utils.listener.IMealOnClick
 import com.emirli.eatup.utils.show
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.String
 import java.util.*
-
 
 @AndroidEntryPoint
 class RestaurantDetailFragment : Fragment() {
@@ -133,7 +130,8 @@ class RestaurantDetailFragment : Fragment() {
             .applyDefaultRequestOptions(options)
             .load(restaurant.imageUrl).into(_binding.imageView)
 
-        _binding.priceLayout.textView.text = "$${restaurant.minimumPrice}"
+        _binding.priceLayout.textView.text =
+            getString(R.string.price_string, "$", restaurant.minimumPrice)
         _binding.priceLayout.imageView.setBackgroundResource(R.mipmap.ic_price)
 
         _binding.deliveryTimeLayout.textView.text = restaurant.deliveryTime
@@ -148,7 +146,10 @@ class RestaurantDetailFragment : Fragment() {
         _binding.mealRecyclerView.adapter = mealAdapter
 
         _binding.locationImageButton.setOnClickListener {
-            val uri = String.format(Locale.ENGLISH, "geo:${restaurant.address.lat},${restaurant.address.lng}")
+            val uri = String.format(
+                Locale.ENGLISH,
+                "geo:${restaurant.address.lat},${restaurant.address.lng}"
+            )
             val gmmIntentUri = Uri.parse(uri)
             val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
             mapIntent.setPackage("com.google.android.apps.maps")

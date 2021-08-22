@@ -1,4 +1,4 @@
-package com.emirli.eatup.model.entity
+package com.emirli.eatup.model.entity.cuisine
 import com.google.gson.annotations.SerializedName
 
 data class Cuisine(

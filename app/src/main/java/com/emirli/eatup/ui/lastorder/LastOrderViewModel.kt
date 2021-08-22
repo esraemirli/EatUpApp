@@ -11,9 +11,10 @@ import javax.inject.Inject
 class LastOrderViewModel @Inject constructor(
     var savedStateHandle: SavedStateHandle,
     private var apiRepository: ApiRepository
-) :  ViewModel() {
+) : ViewModel() {
 
     fun getLastOrders() = apiRepository.getLastOrders()
-    fun rateOrder(vote: Float, mealId: Int, cartId : Int) = apiRepository.rateOrder(mealId, vote, cartId)
+    fun rateOrder(vote: Float, mealId: Int, cartId: Int) =
+        apiRepository.rateOrder(mealId, vote, cartId)
 
 }

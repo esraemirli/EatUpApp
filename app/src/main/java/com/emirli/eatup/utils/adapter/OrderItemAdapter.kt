@@ -1,5 +1,6 @@
 package com.emirli.eatup.utils.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.emirli.eatup.R
-import com.emirli.eatup.model.entity.CartData
+import com.emirli.eatup.model.entity.basket.CartData
 import com.emirli.eatup.utils.listener.IOrderRatingOnClick
 
-class OrderItemAdapter : RecyclerView.Adapter<OrderItemAdapter.ViewHolder>(){
+class OrderItemAdapter : RecyclerView.Adapter<OrderItemAdapter.ViewHolder>() {
     private lateinit var cartList: MutableList<CartData>
     private var listener: IOrderRatingOnClick? = null
     private var defaultRating = 0F
@@ -21,21 +22,26 @@ class OrderItemAdapter : RecyclerView.Adapter<OrderItemAdapter.ViewHolder>(){
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val mealImageView: AppCompatImageView = view.findViewById(R.id.mealImageView)
         private val nameTextView: AppCompatTextView = view.findViewById(R.id.nameTextView)
-        private val restaurantTextView: AppCompatTextView = view.findViewById(R.id.restaurantTextView)
+        private val restaurantTextView: AppCompatTextView =
+            view.findViewById(R.id.restaurantTextView)
         private val priceTextView: AppCompatTextView = view.findViewById(R.id.priceTextView)
         private val ratingBar: RatingBar = view.findViewById(R.id.ratingBar)
 
-        fun bind(cart: CartData, listener: IOrderRatingOnClick?, defaultRating : Float) {
+        fun bind(
+            cart: CartData,
+            listener: IOrderRatingOnClick?,
+            defaultRating: Float,
+            context: Context
+        ) {
             nameTextView.text = cart.mealName
-            priceTextView.text = "$${cart.price}"
+            priceTextView.text = context.getString(R.string.price_string, "$", cart.price)
             restaurantTextView.text = cart.restaurantName
             ratingBar.rating = defaultRating
 
-            if(cart.rate != null) {
+            if (cart.rate != null) {
                 ratingBar.setIsIndicator(true)
                 ratingBar.rating = cart.rate
             }
-
 
             val options = RequestOptions().placeholder(R.drawable.no_data_yellow)
             Glide.with(mealImageView.context)
@@ -43,7 +49,7 @@ class OrderItemAdapter : RecyclerView.Adapter<OrderItemAdapter.ViewHolder>(){
                 .load(cart.imageUrl).into(mealImageView)
 
             ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
-                listener?.onClick(rating,cart.mealId,cart.cartId)
+                listener?.onClick(rating, cart.mealId, cart.cartId)
             }
         }
 
@@ -61,7 +67,8 @@ class OrderItemAdapter : RecyclerView.Adapter<OrderItemAdapter.ViewHolder>(){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = cartList[position]
-        holder.bind(item, listener, defaultRating)
+        val context = holder.itemView.context
+        holder.bind(item, listener, defaultRating, context)
     }
 
     override fun getItemCount(): Int = cartList.size

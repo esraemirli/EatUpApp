@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.emirli.eatup.model.ApiRepository
-import com.emirli.eatup.model.entity.Cuisine
-import com.emirli.eatup.model.entity.Restaurant
+import com.emirli.eatup.model.entity.cuisine.Cuisine
+import com.emirli.eatup.model.entity.restaurant.Restaurant
 import com.emirli.eatup.model.entity.cuisine.CuisineListResponse
 import com.emirli.eatup.model.entity.restaurant.RestaurantResponse
 import com.emirli.eatup.utils.Resource

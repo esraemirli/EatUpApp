@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.emirli.eatup.R
-import com.emirli.eatup.model.entity.Cuisine
-import com.emirli.eatup.model.entity.Restaurant
+import com.emirli.eatup.model.entity.cuisine.Cuisine
+import com.emirli.eatup.model.entity.restaurant.Restaurant
 import com.emirli.eatup.utils.Resource
 import com.emirli.eatup.utils.adapter.CuisineItemAdapter
 import com.emirli.eatup.utils.adapter.RestaurantItemAdapter
@@ -57,14 +57,13 @@ class HomeFragment : Fragment() {
 
     private fun addObserver() {
         viewModel.getUserImage().observe(viewLifecycleOwner, { response ->
-            if(response.status == Resource.Status.SUCCESS) {
+            if (response.status == Resource.Status.SUCCESS) {
                 val options = RequestOptions().placeholder(R.drawable.ic_profile)
                 Glide.with(_binding.profileImageButton.context)
                     .applyDefaultRequestOptions(options)
                     .load(response.data?.image).into(_binding.profileImageButton)
             }
         })
-
         viewModel.getRestaurantList().observe(viewLifecycleOwner, { response ->
             when (response.status) {
                 Resource.Status.LOADING -> _binding.restaurantProgressBar.show()
@@ -73,7 +72,6 @@ class HomeFragment : Fragment() {
                     setRestaurant(response.data?.restaurantList)
                 }
                 Resource.Status.ERROR -> _binding.restaurantProgressBar.gone()
-
             }
         })
         viewModel.getCuisineList().observe(viewLifecycleOwner, { response ->
@@ -84,10 +82,7 @@ class HomeFragment : Fragment() {
                     setCuisineList(response.data?.cuisineList)
                 }
                 Resource.Status.ERROR -> _binding.cuisineProgressBar.gone()
-
             }
-            if (response.status == Resource.Status.SUCCESS)
-                setCuisineList(response.data?.cuisineList)
         })
     }
 
@@ -127,7 +122,6 @@ class HomeFragment : Fragment() {
                 setCuisineList(filterCuisineList)
                 return true
             }
-
         })
     }
 

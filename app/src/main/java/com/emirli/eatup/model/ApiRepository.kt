@@ -14,7 +14,6 @@ class ApiRepository @Inject constructor(
     private var remoteDataSource: RemoteDataSource,
     private var localDataSource: LocalDataSource
 ) {
-    //Profile
     fun login(request: LoginRequest) = performAuthTokenNetworkOperation(
         call = {
             remoteDataSource.login(request)
@@ -33,7 +32,6 @@ class ApiRepository @Inject constructor(
         }
     )
 
-    // Restaurants
     fun getRestaurantList() = performNetworkOperation {
         remoteDataSource.getRestaurantList()
     }
@@ -54,8 +52,8 @@ class ApiRepository @Inject constructor(
         remoteDataSource.getLastOrders()
     }
 
-    fun rateOrder(mealId: Int, vote: Float,  cartId : Int) = performNetworkOperation {
-        remoteDataSource.rateOrder(mealId,vote,cartId)
+    fun rateOrder(mealId: Int, vote: Float, cartId: Int) = performNetworkOperation {
+        remoteDataSource.rateOrder(mealId, vote, cartId)
     }
 
     fun getUserDetail() = performNetworkOperation {

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.emirli.eatup.R
-import com.emirli.eatup.model.entity.Restaurant
+import com.emirli.eatup.model.entity.restaurant.Restaurant
 import com.emirli.eatup.utils.listener.IRestaurantOnClick
 
 class RestaurantItemAdapter : RecyclerView.Adapter<RestaurantItemAdapter.ViewHolder>() {

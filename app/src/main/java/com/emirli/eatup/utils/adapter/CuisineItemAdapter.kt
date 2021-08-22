@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.emirli.eatup.R
-import com.emirli.eatup.model.entity.Cuisine
+import com.emirli.eatup.model.entity.cuisine.Cuisine
 import com.emirli.eatup.utils.listener.ICuisineOnClick
 
 class CuisineItemAdapter : RecyclerView.Adapter<CuisineItemAdapter.ViewHolder>() {
@@ -20,7 +20,8 @@ class CuisineItemAdapter : RecyclerView.Adapter<CuisineItemAdapter.ViewHolder>()
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val nameTextView: AppCompatTextView = view.findViewById(R.id.nameTextView)
         private val imageView: AppCompatImageView = view.findViewById(R.id.iconImageButton)
-        private val containerLinearLayout: LinearLayout = view.findViewById(R.id.containerLinearLayout)
+        private val containerLinearLayout: LinearLayout =
+            view.findViewById(R.id.containerLinearLayout)
 
         fun bind(cuisine: Cuisine, listener: ICuisineOnClick?) {
             nameTextView.text = cuisine.name
@@ -53,9 +54,9 @@ class CuisineItemAdapter : RecyclerView.Adapter<CuisineItemAdapter.ViewHolder>()
 
     override fun getItemCount(): Int = cuisineList.size
 
-    fun setData(cusineList: List<Cuisine>?) {
-        cusineList?.let {
-            this.cuisineList = cusineList
+    fun setData(cuisineList: List<Cuisine>?) {
+        cuisineList?.let {
+            this.cuisineList = cuisineList
             notifyDataSetChanged()
         }
     }

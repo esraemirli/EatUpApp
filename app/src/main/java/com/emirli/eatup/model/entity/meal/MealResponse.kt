@@ -1,6 +1,5 @@
 package com.emirli.eatup.model.entity.meal
 
-import com.emirli.eatup.model.entity.Meal
 import com.google.gson.annotations.SerializedName
 
 data class MealResponse(

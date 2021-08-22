@@ -2,7 +2,6 @@ package com.emirli.eatup.utils
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
-import com.emirli.eatup.model.entity.User
 import com.emirli.eatup.model.entity.login.LoginResponse
 import kotlinx.coroutines.Dispatchers
 

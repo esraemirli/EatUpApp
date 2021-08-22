@@ -11,14 +11,15 @@ import javax.inject.Inject
 class RestaurantViewModel @Inject constructor(
     var savedStateHandle: SavedStateHandle,
     private var apiRepository: ApiRepository
-) :  ViewModel() {
+) : ViewModel() {
 
-    fun getRestaurantById(restaurantId : Int) = apiRepository.getRestaurantById(restaurantId)
+    fun getRestaurantById(restaurantId: Int) = apiRepository.getRestaurantById(restaurantId)
 
     fun addFavoriteRestaurant(restaurantId: Int) = apiRepository.addFavoriteRestaurant(restaurantId)
 
-    fun removeFavoriteRestaurant(restaurantId: Int) = apiRepository.removeFavoriteRestaurant(restaurantId)
+    fun removeFavoriteRestaurant(restaurantId: Int) =
+        apiRepository.removeFavoriteRestaurant(restaurantId)
 
-    fun addBasket(request : BasketRequest) = apiRepository.addBasket(request)
+    fun addBasket(request: BasketRequest) = apiRepository.addBasket(request)
 }
 

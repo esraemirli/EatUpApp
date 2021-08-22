@@ -33,4 +33,14 @@
     <string name="login_text">Login</string>
     <string name="sign_up_text">Sign Up</string>
     <string name="logout_text">Logout</string>
+
+    <string name="price_string">%1$s%2$.2f</string>
+    <string name="cuisine_string">%1$s Restaurants</string>
+    <string name="calorie_string"> %2$.2f %1$s</string>
+    <string name="quantity_string"> %2$.2f %1$s</string>
+    <string name="basket_page_title">My Basket</string>
+    <string name="cuisine_item_string">%1$s</string>
+    <string name="meal_number_string">%2$d%1$s</string>
+
+
 </resources>

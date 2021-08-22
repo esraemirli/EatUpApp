@@ -11,9 +11,9 @@ import javax.inject.Inject
 class MealDetailViewModel @Inject constructor(
     var savedStateHandle: SavedStateHandle,
     private var apiRepository: ApiRepository
-): ViewModel() {
+) : ViewModel() {
 
-    fun getMealById(mealId : Int) = apiRepository.getMealById(mealId)
+    fun getMealById(mealId: Int) = apiRepository.getMealById(mealId)
 
-    fun addBasket(request : BasketRequest) = apiRepository.addBasket(request)
+    fun addBasket(request: BasketRequest) = apiRepository.addBasket(request)
 }

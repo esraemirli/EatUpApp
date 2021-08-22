@@ -1,5 +1,6 @@
 package com.emirli.eatup.utils.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,27 +11,30 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.emirli.eatup.R
-import com.emirli.eatup.model.entity.Restaurant
+import com.emirli.eatup.model.entity.restaurant.Restaurant
 import com.emirli.eatup.utils.listener.IRestaurantOnClick
 
 
-class RestaurantListingItemAdapter : RecyclerView.Adapter<RestaurantListingItemAdapter.ViewHolder>(){
+class RestaurantListingItemAdapter :
+    RecyclerView.Adapter<RestaurantListingItemAdapter.ViewHolder>() {
     private lateinit var restaurantList: MutableList<Restaurant>
     private var listener: IRestaurantOnClick? = null
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val nameTextView: AppCompatTextView = view.findViewById(R.id.nameTextView)
         private val minPriceTextView: AppCompatTextView = view.findViewById(R.id.minPriceTextView)
-        private val deliveryTimeTextView: AppCompatTextView = view.findViewById(R.id.deliveryTimeTextView)
+        private val deliveryTimeTextView: AppCompatTextView =
+            view.findViewById(R.id.deliveryTimeTextView)
         private val voteTextView: AppCompatTextView = view.findViewById(R.id.voteTextView)
         private val imageView: AppCompatImageView = view.findViewById(R.id.iconImageView)
         private val containerLinearLayout: LinearLayout =
             view.findViewById(R.id.containerLinearLayout)
 
-        fun bind(restaurant: Restaurant, listener: IRestaurantOnClick?) {
+        fun bind(restaurant: Restaurant, listener: IRestaurantOnClick?, context: Context) {
             nameTextView.text = restaurant.name
             deliveryTimeTextView.text = restaurant.deliveryTime
-            minPriceTextView.text = "$${restaurant.minimumPrice}"
+            minPriceTextView.text =
+                context.getString(R.string.price_string, "$", restaurant.minimumPrice)
             voteTextView.text = restaurant.vote.toString()
 
             val options = RequestOptions().placeholder(R.drawable.no_data_yellow)
@@ -56,7 +60,8 @@ class RestaurantListingItemAdapter : RecyclerView.Adapter<RestaurantListingItemA
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = restaurantList[position]
-        holder.bind(item, listener)
+        val context = holder.itemView.context
+        holder.bind(item, listener, context)
     }
 
     override fun getItemCount(): Int = restaurantList.size

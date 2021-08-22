@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.emirli.eatup.R
 import com.emirli.eatup.databinding.FragmentLastOrderBinding
-import com.emirli.eatup.model.entity.Basket
-import com.emirli.eatup.model.entity.CartData
+import com.emirli.eatup.model.entity.basket.Basket
+import com.emirli.eatup.model.entity.basket.CartData
 import com.emirli.eatup.utils.Resource
 import com.emirli.eatup.utils.adapter.OrderItemAdapter
 import com.emirli.eatup.utils.gone
@@ -24,12 +24,10 @@ import com.emirli.eatup.utils.listener.IOrderRatingOnClick
 import com.emirli.eatup.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
-class LastOrderFragment : Fragment(){
+class LastOrderFragment : Fragment() {
     private lateinit var _binding: FragmentLastOrderBinding
     private val viewModel: LastOrderViewModel by viewModels()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -102,7 +100,7 @@ class LastOrderFragment : Fragment(){
         }
     }
 
-    private fun createTextView(orderTime: String): AppCompatTextView{
+    private fun createTextView(orderTime: String): AppCompatTextView {
         val layoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
         )
@@ -118,24 +116,25 @@ class LastOrderFragment : Fragment(){
 
     private fun createRecyclerView(cartDataList: ArrayList<CartData>): RecyclerView {
         val recyclerView = RecyclerView(requireContext())
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         val orderAdapter = OrderItemAdapter()
         orderAdapter.setData(cartDataList)
         recyclerView.adapter = orderAdapter
 
-        orderAdapter.addListener(object : IOrderRatingOnClick{
-            override fun onClick(vote: Float, mealId: Int, cartId : Int) {
-                sendRating(vote,mealId,cartId, orderAdapter)
+        orderAdapter.addListener(object : IOrderRatingOnClick {
+            override fun onClick(vote: Float, mealId: Int, cartId: Int) {
+                sendRating(vote, mealId, cartId, orderAdapter)
             }
         })
         return recyclerView
     }
 
     private fun sendRating(vote: Float, mealId: Int, cartId: Int, orderAdapter: OrderItemAdapter) {
-        viewModel.rateOrder(vote,mealId,cartId).observe(viewLifecycleOwner, { response ->
-            if(response.status == Resource.Status.SUCCESS) {
+        viewModel.rateOrder(vote, mealId, cartId).observe(viewLifecycleOwner, { response ->
+            if (response.status == Resource.Status.SUCCESS) {
                 _binding.starAnimation.show()
-                orderAdapter.updateItem(cartId, mealId,vote)
+                orderAdapter.updateItem(cartId, mealId, vote)
             }
         })
     }

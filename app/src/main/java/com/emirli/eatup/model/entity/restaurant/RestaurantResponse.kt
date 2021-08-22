@@ -1,6 +1,5 @@
 package com.emirli.eatup.model.entity.restaurant
 
-import com.emirli.eatup.model.entity.Restaurant
 import com.google.gson.annotations.SerializedName
 
 data class RestaurantResponse (

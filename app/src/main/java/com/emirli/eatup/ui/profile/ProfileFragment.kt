@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.emirli.eatup.R
 import com.emirli.eatup.databinding.FragmentProfileBinding
-import com.emirli.eatup.model.entity.User
+import com.emirli.eatup.model.entity.profile.User
 import com.emirli.eatup.model.entity.profile.UserRequest
 import com.emirli.eatup.ui.splash.SplashActivity
 import com.emirli.eatup.utils.Resource

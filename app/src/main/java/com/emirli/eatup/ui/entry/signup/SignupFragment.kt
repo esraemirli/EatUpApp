@@ -17,9 +17,8 @@ import com.emirli.eatup.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SignupFragment :  Fragment() {
+class SignupFragment : Fragment() {
     private lateinit var _binding: FragmentSignupBinding
-
     private val viewModel: SignupViewModel by viewModels()
 
     override fun onCreateView(
@@ -62,15 +61,14 @@ class SignupFragment :  Fragment() {
         val email = _binding.emailTextView.editText?.text.toString()
         val password = _binding.passwordTextView.editText?.text.toString()
 
-        val request = RegisterRequest(email,name,password)
+        val request = RegisterRequest(email, name, password)
         viewModel.signup(request).observe(viewLifecycleOwner, { response ->
-            if(response.status == Resource.Status.SUCCESS) {
+            if (response.status == Resource.Status.SUCCESS) {
                 _binding.containerLinearLayout.gone()
                 _binding.signupAnimation.show()
             }
         })
     }
-
 
 
 }

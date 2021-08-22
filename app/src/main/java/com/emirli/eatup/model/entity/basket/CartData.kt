@@ -1,4 +1,4 @@
-package com.emirli.eatup.model.entity
+package com.emirli.eatup.model.entity.basket
 
 
 import com.google.gson.annotations.SerializedName
@@ -19,7 +19,7 @@ data class CartData(
     @SerializedName("mealName")
     val mealName: String,
     @SerializedName("price")
-    val price: Int,
+    val price: Double,
     @SerializedName("quantity")
     val quantity: Int
 )

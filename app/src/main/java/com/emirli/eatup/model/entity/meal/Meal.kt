@@ -1,5 +1,4 @@
-package com.emirli.eatup.model.entity
-
+package com.emirli.eatup.model.entity.meal
 
 import com.google.gson.annotations.SerializedName
 

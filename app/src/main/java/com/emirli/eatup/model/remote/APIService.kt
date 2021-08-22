@@ -1,7 +1,7 @@
 package com.emirli.eatup.model.remote
 
 import com.emirli.eatup.model.entity.DataResponse
-import com.emirli.eatup.model.entity.User
+import com.emirli.eatup.model.entity.profile.User
 import com.emirli.eatup.model.entity.cuisine.CuisineListResponse
 import com.emirli.eatup.model.entity.login.LoginRequest
 import com.emirli.eatup.model.entity.login.LoginResponse
@@ -33,7 +33,7 @@ interface APIService {
     @POST("cart/buy")
     suspend fun buyBasket(): Response<DataResponse>
 
-    @GET("restaurant/favourite")   //TODO typo
+    @GET("restaurant/favourite")
     suspend fun getFavoriteRestaurantList(): Response<RestaurantResponse>
 
     @GET("cart/sold-meals")
@@ -43,7 +43,7 @@ interface APIService {
     suspend fun rateOrder(
         @Path("mealId") mealId: Int,
         @Query("vote") vote: Float,
-         @Query("cartId") cartId: Int
+        @Query("cartId") cartId: Int
     ): Response<DataResponse>
 
     @GET("users/get-user")

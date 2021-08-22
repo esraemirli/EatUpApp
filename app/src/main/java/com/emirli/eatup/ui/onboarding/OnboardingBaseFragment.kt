@@ -57,7 +57,7 @@ class OnboardingBaseFragment : Fragment() {
         _binding.previousButton.setOnClickListener {
             _binding.viewPager.currentItem = viewPagerCurrentItem - 1
         }
-        _binding.skipTextView.setOnClickListener() {
+        _binding.skipTextView.setOnClickListener {
             actionToLoginPage()
         }
 

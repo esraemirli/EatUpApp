@@ -11,21 +11,20 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class BasketViewModel  @Inject constructor(
+class BasketViewModel @Inject constructor(
     var savedStateHandle: SavedStateHandle,
     private var apiRepository: ApiRepository
-)  : ViewModel() {
+) : ViewModel() {
 
-
-    fun getBasketItemList() : LiveData<Resource<BasketResponse>> {
+    fun getBasketItemList(): LiveData<Resource<BasketResponse>> {
         return apiRepository.getBasketItemList()
     }
 
-    fun buyBasket() : LiveData<Resource<DataResponse>> {
+    fun buyBasket(): LiveData<Resource<DataResponse>> {
         return apiRepository.buyBasket()
     }
 
-    fun removeItemFromBasket(mealId: Int) : LiveData<Resource<DataResponse>> {
+    fun removeItemFromBasket(mealId: Int): LiveData<Resource<DataResponse>> {
         return apiRepository.removeItemFromBasket(mealId)
     }
 

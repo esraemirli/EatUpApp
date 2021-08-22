@@ -14,7 +14,7 @@ import javax.inject.Inject
 class SignupViewModel @Inject constructor(
     var savedStateHandle: SavedStateHandle,
     private var apiRepository: ApiRepository
-) : ViewModel()  {
+) : ViewModel() {
 
     fun signup(request: RegisterRequest): LiveData<Resource<LoginResponse>> =
         apiRepository.register(request)

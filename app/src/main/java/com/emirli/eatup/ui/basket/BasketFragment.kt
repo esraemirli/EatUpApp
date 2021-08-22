@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.emirli.eatup.R
 import com.emirli.eatup.databinding.FragmentBasketBinding
-import com.emirli.eatup.model.entity.CartData
+import com.emirli.eatup.model.entity.basket.CartData
 import com.emirli.eatup.utils.Resource
 import com.emirli.eatup.utils.adapter.BasketItemAdapter
 import com.emirli.eatup.utils.gone
@@ -46,7 +46,7 @@ class BasketFragment : Fragment() {
     private fun initView() {
         _binding.basketRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        _binding.pageTitleTextView.text = "My Basket"
+        _binding.pageTitleTextView.text = getString(R.string.basket_page_title)
 
     }
 
@@ -56,7 +56,7 @@ class BasketFragment : Fragment() {
                 Resource.Status.LOADING -> _binding.progressBar.show()
                 Resource.Status.SUCCESS -> {
                     _binding.totalPriceTextView.text =
-                        "$${response.data?.basketData?.totalPrice}"
+                        getString(R.string.price_string, "$", response.data?.basketData?.totalPrice)
                     setBasketItem(response.data?.basketData?.cartDataList)
                 }
                 Resource.Status.ERROR -> isPageVisible(false)

@@ -10,7 +10,7 @@ import javax.inject.Inject
 class FavoriteViewModel @Inject constructor(
     var savedStateHandle: SavedStateHandle,
     private var apiRepository: ApiRepository
-) :  ViewModel()  {
+) : ViewModel() {
 
     fun getFavoriteRestaurantList() = apiRepository.getFavoriteRestaurantList()
 
