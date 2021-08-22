@@ -31,6 +31,7 @@ Happy uses :relaxed:
 
 ![#00A651](https://via.placeholder.com/15/00A651/000000?text=+) Lottie
 
-##Usage
+## Usage
+
 ![eatup](https://github.com/esraemirli/EatUpApp/blob/main/usage/EatUpGif.gif)
 
