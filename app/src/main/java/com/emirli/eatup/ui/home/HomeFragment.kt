@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.emirli.eatup.databinding.FragmentHomeBinding
 import android.view.LayoutInflater
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -64,21 +65,23 @@ class HomeFragment : Fragment() {
         viewModel.getRestaurantList().observe(viewLifecycleOwner, { response ->
             when (response.status) {
                 Resource.Status.LOADING -> _binding.restaurantProgressBar.show()
-                Resource.Status.SUCCESS -> setRestaurant(response.data?.restaurantList)
-                Resource.Status.ERROR -> {
-                    _binding.restaurantProgressBar.gone()
-                    _binding.restaurantErrorLinearLayout.show()
+                Resource.Status.SUCCESS -> {
+                    viewModel.restaurantList = response.data?.restaurantList
+                    setRestaurant(response.data?.restaurantList)
                 }
+                Resource.Status.ERROR -> _binding.restaurantProgressBar.gone()
+
             }
         })
         viewModel.getCuisineList().observe(viewLifecycleOwner, { response ->
             when (response.status) {
                 Resource.Status.LOADING -> _binding.cuisineProgressBar.show()
-                Resource.Status.SUCCESS -> setCuisineList(response.data?.cuisineList)
-                Resource.Status.ERROR -> {
-                    _binding.cuisineProgressBar.gone()
-                    _binding.cuisineErrorLinearLayout.show()
+                Resource.Status.SUCCESS -> {
+                    viewModel.cuisineList = response.data?.cuisineList
+                    setCuisineList(response.data?.cuisineList)
                 }
+                Resource.Status.ERROR -> _binding.cuisineProgressBar.gone()
+
             }
             if (response.status == Resource.Status.SUCCESS)
                 setCuisineList(response.data?.cuisineList)
@@ -105,11 +108,28 @@ class HomeFragment : Fragment() {
         _binding.profileImageButton.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
         }
+        _binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                val filterRestaurantList = viewModel.searchTextOnRestaurantList(query)
+                setRestaurant(filterRestaurantList)
+                val filterCuisineList = viewModel.searchTextOnCuisineList(query)
+                setCuisineList(filterCuisineList)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val filterRestaurantList = viewModel.searchTextOnRestaurantList(newText)
+                setRestaurant(filterRestaurantList)
+                val filterCuisineList = viewModel.searchTextOnCuisineList(newText)
+                setCuisineList(filterCuisineList)
+                return true
+            }
+
+        })
     }
 
     private fun setCuisineList(cuisineList: List<Cuisine>?) {
         _binding.cuisineProgressBar.gone()
-        _binding.cuisineErrorLinearLayout.isVisible = cuisineList.isNullOrEmpty()
         _binding.cuisineRecyclerView.show()
 
         cuisineAdapter.setData(cuisineList)
@@ -118,7 +138,6 @@ class HomeFragment : Fragment() {
 
     private fun setRestaurant(restaurantList: List<Restaurant>?) {
         _binding.restaurantProgressBar.gone()
-        _binding.restaurantErrorLinearLayout.isVisible = restaurantList.isNullOrEmpty()
         _binding.restaurantRecyclerView.show()
 
         restaurantAdapter.setData(restaurantList)

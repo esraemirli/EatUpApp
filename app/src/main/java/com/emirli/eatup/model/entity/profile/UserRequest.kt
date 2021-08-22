@@ -7,7 +7,7 @@ data class UserRequest(
     @SerializedName("name")
     val name: String,
     @SerializedName("password")
-    val password: String,
+    val password: String? = null,
     @SerializedName("phoneNumber")
     val phoneNumber: String,
     @SerializedName("address")

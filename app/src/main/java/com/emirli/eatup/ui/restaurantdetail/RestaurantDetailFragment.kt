@@ -1,5 +1,8 @@
 package com.emirli.eatup.ui.restaurantdetail
 
+import android.content.Intent
+import android.location.Geocoder
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +26,9 @@ import com.emirli.eatup.utils.gone
 import com.emirli.eatup.utils.listener.IMealOnClick
 import com.emirli.eatup.utils.show
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.String
+import java.util.*
+
 
 @AndroidEntryPoint
 class RestaurantDetailFragment : Fragment() {
@@ -133,13 +139,21 @@ class RestaurantDetailFragment : Fragment() {
         _binding.deliveryTimeLayout.textView.text = restaurant.deliveryTime
         _binding.deliveryTimeLayout.imageView.setBackgroundResource(R.mipmap.ic_alarm)
 
-        _binding.voteLayout.textView.text = String.format("%.2f", restaurant.vote)
+        _binding.voteLayout.textView.text = restaurant.vote.toString()
         _binding.voteLayout.imageView.setBackgroundResource(R.mipmap.ic_vote)
 
         _binding.descriptionTextView.text = restaurant.detail
 
         mealAdapter.setData(restaurant.meals)
         _binding.mealRecyclerView.adapter = mealAdapter
+
+        _binding.locationImageButton.setOnClickListener {
+            val uri = String.format(Locale.ENGLISH, "geo:${restaurant.address.lat},${restaurant.address.lng}")
+            val gmmIntentUri = Uri.parse(uri)
+            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+            mapIntent.setPackage("com.google.android.apps.maps")
+            startActivity(mapIntent)
+        }
     }
 
 

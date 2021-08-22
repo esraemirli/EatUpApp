@@ -54,7 +54,6 @@ class LoginFragment : Fragment(){
 
             override fun onAnimationRepeat(animation: Animator?) {
             }
-
         })
     }
 

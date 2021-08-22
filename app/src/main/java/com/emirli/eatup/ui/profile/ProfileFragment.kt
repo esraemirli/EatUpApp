@@ -57,10 +57,13 @@ class ProfileFragment : Fragment() {
             name = _binding.nameLayout.fieldEditText.text.toString(),
             phoneNumber = _binding.phoneLayout.fieldEditText.text.toString(),
             address = _binding.addressLayout.fieldEditText.text.toString(),
-            password = _binding.passwordLayout.fieldEditText.text.toString(),
+            password = if (_binding.passwordLayout.fieldEditText.text.isNullOrEmpty())
+                null
+            else
+                _binding.passwordLayout.fieldEditText.text.toString()
         )
         viewModel.updateUser(request).observe(viewLifecycleOwner, { response ->
-            if(response.status == Resource.Status.SUCCESS)
+            if (response.status == Resource.Status.SUCCESS)
                 findNavController().popBackStack()
         })
     }

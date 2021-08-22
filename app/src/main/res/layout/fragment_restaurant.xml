@@ -135,15 +135,33 @@
                             android:layout_marginStart="16dp" />
                     </LinearLayout>
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="@font/patrick_hand"
-                        android:text="@string/restaurant_description"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="14sp"
+                            android:layout_marginEnd="4dp"
+                            android:fontFamily="@font/patrick_hand"
+                            android:text="@string/restaurant_description"
+                            android:textColor="@color/black"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/locationImageButton"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="bottom"
+                            android:background="@null"
+                            android:backgroundTint="@null"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_map"/>
+                    </LinearLayout>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/descriptionTextView"
@@ -154,6 +172,8 @@
                         android:textColor="@color/dark_grey"
                         android:textSize="22sp"
                         tools:text="Restaurant Detail Text" />
+
+
                 </LinearLayout>
 
             </FrameLayout>
