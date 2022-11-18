@@ -8,28 +8,18 @@ You can view the restaurants belonging to that cuisine from the cuisine types on
 You can remove or buy the products you have added to the cart.
 You can view the products purchased in your recent orders and contribute to the restaurant score by voting. <br/>
 
-Happy uses :relaxed:
 
 ## What I used
-![#00A651](https://via.placeholder.com/15/00A651/000000?text=+) MVVM Architecture
-
-![#00A651](https://via.placeholder.com/15/00A651/000000?text=+) Dagger Hilt
-
-![#00A651](https://via.placeholder.com/15/00A651/000000?text=+) Retrofit
-
-![#00A651](https://via.placeholder.com/15/00A651/000000?text=+) Coroutine
-
-![#00A651](https://via.placeholder.com/15/00A651/000000?text=+) Glide
-
-![#00A651](https://via.placeholder.com/15/00A651/000000?text=+) Navigation
-
-![#00A651](https://via.placeholder.com/15/00A651/000000?text=+) ViewBinding
-
-![#00A651](https://via.placeholder.com/15/00A651/000000?text=+) View Pager
-
-![#00A651](https://via.placeholder.com/15/00A651/000000?text=+) Recyclerview
-
-![#00A651](https://via.placeholder.com/15/00A651/000000?text=+) Lottie
+* MVVM Architecture
+* Dagger Hilt
+* Retrofit
+* Coroutine
+* Glide
+* Navigation
+* ViewBinding
+* View Pager
+* Recyclerview
+* Lottie
 
 ## Usage
 
